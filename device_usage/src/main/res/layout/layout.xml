@@ -1,0 +1,36 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp"
+    tools:context=".Settings" >
+
+    <ImageView
+        android:id="@+id/device_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:src="@drawable/ic_action_device_usage" />
+
+    <TextView
+        android:id="@+id/device_non_usage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/device_icon"
+        android:text="hh:mm:ss (off)"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="@android:color/black" />
+
+    <LinearLayout
+        android:id="@+id/chart_usage"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/device_icon"
+        android:layout_alignTop="@+id/device_icon"
+        android:layout_toRightOf="@+id/device_non_usage"
+        android:orientation="vertical" >
+
+    </LinearLayout>
+
+</RelativeLayout>

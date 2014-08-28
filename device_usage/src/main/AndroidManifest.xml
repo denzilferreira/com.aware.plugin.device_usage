@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.aware.plugin.device_usage"
+    android:versionCode="3"
+    android:versionName="1.2" >
+
+    <uses-sdk
+        android:minSdkVersion="10"
+        android:targetSdkVersion="19" />
+    <uses-permission android:name="com.aware.READ_CONTEXT_DATA"/>
+    <uses-permission android:name="com.aware.WRITE_CONTEXT_DATA"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name" >
+        <service android:name="com.aware.plugin.device_usage.Plugin" android:exported="true" android:label="Phone Usage"></service>
+        <provider android:name="com.aware.plugin.device_usage.Provider" android:authorities="${applicationId}.provider.device_usage" android:enabled="true" android:exported="true" android:readPermission="com.aware.READ_CONTEXT_DATA" android:writePermission="com.aware.WRITE_CONTEXT_DATA"></provider>
+        <service android:name="com.aware.Aware"></service>
+        <service android:name="com.aware.Screen"></service>
+        <activity android:name="com.aware.plugin.device_usage.Settings" android:exported="true"></activity>
+    </application>
+
+</manifest>

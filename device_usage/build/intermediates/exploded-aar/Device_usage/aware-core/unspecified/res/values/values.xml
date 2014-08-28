@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- From: file:/Users/denzil/Android/source/Device_usage/aware-core/src/main/res/values/arrays.xml -->
+    <eat-comment />
+
+    <string-array name="clean_old_data_readable">
+        <item>Never</item>
+        <item>Weekly</item>
+        <item>Monthly</item>
+    </string-array>
+    <string-array name="clean_old_data_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+    <!-- From: file:/Users/denzil/Android/source/Device_usage/aware-core/src/main/res/values/bools.xml -->
+    <eat-comment />
+
+    <item name="display_aware" format="boolean" type="bool">true</item>
+    <item name="is_jelly_bean" type="bool">false</item>
+    <item name="is_not_jelly_bean" type="bool">true</item>
+    <!-- From: file:/Users/denzil/Android/source/Device_usage/aware-core/src/main/res/values/color.xml -->
+    <eat-comment />
+
+    <color name="card_shadow">#AFAFAF</color>
+    <color name="grey_background">#E5E5E5</color>
+    <!-- From: file:/Users/denzil/Android/source/Device_usage/aware-core/src/main/res/values/strings.xml -->
+    <eat-comment />
+
+    <string name="app_name">AWARE</string>
+    <string name="aware_activate_accessibility">Please activate AWARE here for overall stability.</string>
+    <string name="aware_auto_update">Check for updates</string>
+    <string name="aware_auto_update_version">Installed version is ???</string>
+    <string name="aware_camera_scan">QRCode</string>
+    <string name="aware_debug_summary">Show in ADB Logcat all debug messages for plugins and AWARE</string>
+    <string name="aware_debug_tag">Logcat tag (by default: AWARE)</string>
+    <string name="aware_debug_tag_summary">Overrides the ADB logcat tag</string>
+    <string name="aware_debug_title">Debug</string>
+    <string name="aware_description">AWARE is an Android\'s framework dedicated to infer, log and share mobile context information between mobile applications. Check www.awareframework.com for details.</string>
+    <string name="aware_developer">Developer</string>
+    <string name="aware_device_id">AWARE Device ID</string>
+    <string name="aware_esm_questions">Hello, could you answer some questions?</string>
+    <string name="aware_plugins">Plugins</string>
+    <string name="aware_sensors">AWARE</string>
+    <string name="aware_stream">AWARE Stream</string>
+    <string name="aware_studies">Studies</string>
+    <string name="drawer_close">Drawer is closed</string>
+    <string name="drawer_open">Drawer is opened</string>
+    <string name="read_permission">Allow read-only access to the Context Providers data.</string>
+    <string name="write_permission">Allow read and write access to the Context Providers data.</string>
+
+</resources>

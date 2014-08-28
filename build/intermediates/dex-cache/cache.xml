@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<pre-dex-items>
+
+    <item
+        dex="/Users/denzil/Android/source/Device_usage/device_usage/build/intermediates/pre-dexed/debug/classes-491d0671002ce826747f60cdb036590d899402cf.jar"
+        jar="/Users/denzil/Android/source/Device_usage/device_usage/build/intermediates/exploded-aar/Device_usage/aware-core/unspecified/classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="e08e10715b20daa6769254e671b1c90ae46d95a0"/>
+    <item
+        dex="/Users/denzil/Android/source/Device_usage/device_usage/build/intermediates/pre-dexed/debug/classes-177dca4d701ee2007cf12da31f12cc258b6a8c19.jar"
+        jar="/Users/denzil/Android/source/Device_usage/device_usage/build/intermediates/exploded-aar/com.android.support/gridlayout-v7/19.1.0/classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="af4cc326e6cd92f88db12298767e521743aedd36"/>
+    <item
+        dex="/Users/denzil/Android/source/Device_usage/device_usage/build/intermediates/pre-dexed/debug/mqtt-client-0.4.0-1b64401278c5b6d5f181686d60cc4ee812fcfe9f.jar"
+        jar="/Users/denzil/Android/source/Device_usage/device_usage/build/intermediates/exploded-aar/Device_usage/aware-core/unspecified/libs/mqtt-client-0.4.0.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="02315d1759d01e52495e040e6e538aaa2e91c7f6"/>
+    <item
+        dex="/Users/denzil/Android/source/Device_usage/device_usage/build/intermediates/pre-dexed/debug/support-v4-19.1.0-fe930dc68beb1e566675ce71b270d4091c6c249b.jar"
+        jar="/Applications/Android Studio.app/sdk/extras/android/m2repository/com/android/support/support-v4/19.1.0/support-v4-19.1.0.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="85f201b380937e61a9dce6ca90ccf6872abbfb67"/>
+    <item
+        dex="/Users/denzil/Android/source/Device_usage/device_usage/build/intermediates/pre-dexed/debug/classes-2de2516ffd27aef32e977f371a70f161c62000e1.jar"
+        jar="/Users/denzil/Android/source/Device_usage/device_usage/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="3499ceba05ca1f6037c6a2fad73df8f636224a28"/>
+    <item
+        dex="/Users/denzil/Android/source/Device_usage/device_usage/build/intermediates/pre-dexed/debug/achartengine-1.1.0-d5d9701e9d5639fce79a614c053756f04c9ee6b5.jar"
+        jar="/Users/denzil/Android/source/Device_usage/device_usage/build/intermediates/exploded-aar/Device_usage/aChartAndroidlib/unspecified/libs/achartengine-1.1.0.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="9932e3fb9fbe54e80873e77f72a99f79e33b3250"/>
+    <item
+        dex="/Users/denzil/Android/source/Device_usage/device_usage/build/intermediates/pre-dexed/debug/zbar-d160804c6ffb303bf1c61f1ce18cda6d46043acd.jar"
+        jar="/Users/denzil/Android/source/Device_usage/device_usage/build/intermediates/exploded-aar/Device_usage/aware-core/unspecified/libs/zbar.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="0a7b88ba1496a0b4af76069ad40dacd3897149e0"/>
+    <item
+        dex="/Users/denzil/Android/source/Device_usage/device_usage/build/intermediates/pre-dexed/debug/classes-7976794346212b9b2a301b547362606120f3968b.jar"
+        jar="/Users/denzil/Android/source/Device_usage/device_usage/build/intermediates/exploded-aar/Device_usage/aChartAndroidlib/unspecified/classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="e01c48015574fd5631436017c1c62ec0ec32bd79"/>
+
+</pre-dex-items>

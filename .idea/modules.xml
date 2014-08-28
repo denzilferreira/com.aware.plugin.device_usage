@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Device_usage.iml" filepath="$PROJECT_DIR$/Device_usage.iml" />
+      <module fileurl="file://$PROJECT_DIR$/aChartAndroidlib/aChartAndroidlib.iml" filepath="$PROJECT_DIR$/aChartAndroidlib/aChartAndroidlib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/aware-core/aware-core.iml" filepath="$PROJECT_DIR$/aware-core/aware-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/device_usage/device_usage.iml" filepath="$PROJECT_DIR$/device_usage/device_usage.iml" />
+    </modules>
+  </component>
+</project>
+

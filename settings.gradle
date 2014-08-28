@@ -1,0 +1,2 @@
+include ':aChartAndroidlib', ':aware-core'
+include ':device_usage'
