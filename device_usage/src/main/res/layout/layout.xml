@@ -13,23 +13,32 @@
         android:src="@drawable/ic_action_device_usage" />
 
     <TextView
-        android:id="@+id/device_non_usage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_toRightOf="@+id/device_icon"
-        android:text="hh:mm:ss (off)"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="@android:color/black" />
+        android:text="The device was off for:  "
+        android:id="@+id/not_used"
+        android:layout_toRightOf="@+id/device_icon"
+        android:textColor="#ff000000"
+         />
+
+    <TextView
+        android:id="@+id/device_off"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/not_used"
+        android:text="hh:mm:ss"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="#ff000000" />
 
     <LinearLayout
         android:id="@+id/chart_usage"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/device_icon"
-        android:layout_alignTop="@+id/device_icon"
-        android:layout_toRightOf="@+id/device_non_usage"
-        android:orientation="vertical" >
+        android:layout_height="40dp"
+        android:orientation="vertical"
+        android:layout_centerVertical="true"
+        android:layout_below="@+id/device_off"
+        android:layout_alignLeft="@+id/not_used">
 
     </LinearLayout>
 

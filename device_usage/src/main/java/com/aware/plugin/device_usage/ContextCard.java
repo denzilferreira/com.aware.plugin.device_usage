@@ -3,13 +3,13 @@ package com.aware.plugin.device_usage;
 import android.content.Context;
 import android.database.Cursor;
 import android.graphics.Color;
-import android.text.format.DateUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.aware.plugin.device_usage.Provider.DeviceUsage_Data;
+import com.aware.utils.Converters;
 import com.aware.utils.IContextCard;
 
 import org.achartengine.ChartFactory;
@@ -36,11 +36,12 @@ public class ContextCard implements IContextCard {
 		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View card = inflater.inflate(R.layout.layout, null);
 		
-		TextView off = (TextView) card.findViewById(R.id.device_non_usage);
+		TextView off = (TextView) card.findViewById(R.id.device_off);
+
 		Cursor phone_usage = context.getContentResolver().query(DeviceUsage_Data.CONTENT_URI, null, DeviceUsage_Data.ELAPSED_DEVICE_OFF + " > 0", null, DeviceUsage_Data.TIMESTAMP + " DESC LIMIT 1");
         if( phone_usage != null && phone_usage.moveToFirst() ) {
-        	double elapsed_phone_off = phone_usage.getDouble(phone_usage.getColumnIndex(DeviceUsage_Data.ELAPSED_DEVICE_OFF));
-        	off.setText( DateUtils.formatElapsedTime( (long) elapsed_phone_off/1000) + " (off)");
+        	double average_phone_off = phone_usage.getDouble(phone_usage.getColumnIndex(DeviceUsage_Data.ELAPSED_DEVICE_OFF));
+            off.setText( Converters.readable_elapsed( (long) average_phone_off ) );
         }
         if( phone_usage != null && ! phone_usage.isClosed() ) phone_usage.close();
         
@@ -92,7 +93,8 @@ public class ContextCard implements IContextCard {
 		dataset_renderer.setXLabelsColor(Color.BLACK);
 		dataset_renderer.setYLabelsColor(0, Color.BLACK);
 		dataset_renderer.setLegendHeight(0);
-		dataset_renderer.setYLabels(0);
+		dataset_renderer.setYLabels(4);
+        dataset_renderer.setYTitle("Frequency");
 		dataset_renderer.setZoomButtonsVisible(false);
 		dataset_renderer.setXLabels(0);
 		dataset_renderer.setPanEnabled(false);
