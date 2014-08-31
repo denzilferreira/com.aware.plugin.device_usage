@@ -27,6 +27,7 @@ public class ContextCard implements IContextCard {
 
     /**
      * Empty constructor required for Java reflection to load the card
+     *
      */
     public ContextCard(){};
 
