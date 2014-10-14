@@ -42,15 +42,13 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
 	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
 		Preference preference = (Preference) findPreference(key);
 		if( preference.getKey().equals(STATUS_PLUGIN_DEVICE_USAGE) ) {
-			if( sharedPreferences.getBoolean(key, false) ) {
-				Aware.setSetting(getApplicationContext(), key, true);
+            Aware.setSetting(getApplicationContext(), key, sharedPreferences.getBoolean(key, false));
+
+            if( sharedPreferences.getBoolean(key, false) ) {
 				Aware.startPlugin(getApplicationContext(), getPackageName());
 			} else {
-				Aware.setSetting(getApplicationContext(), key, false);
 				Aware.stopPlugin(getApplicationContext(), getPackageName());
 			}
 		}
-		Intent apply = new Intent(Aware.ACTION_AWARE_REFRESH);
-		sendBroadcast(apply);
 	}
 }

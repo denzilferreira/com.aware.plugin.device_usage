@@ -94,8 +94,9 @@ public class ContextCard implements IContextCard {
 		dataset_renderer.setXLabelsColor(Color.BLACK);
 		dataset_renderer.setYLabelsColor(0, Color.BLACK);
 		dataset_renderer.setLegendHeight(0);
-		dataset_renderer.setYLabels(4);
+		dataset_renderer.setYLabels(0);
         dataset_renderer.setYTitle("Frequency");
+        dataset_renderer.setXTitle("Time of day");
 		dataset_renderer.setZoomButtonsVisible(false);
 		dataset_renderer.setXLabels(0);
 		dataset_renderer.setPanEnabled(false);
@@ -115,8 +116,8 @@ public class ContextCard implements IContextCard {
 		dataset_renderer.addSeriesRenderer(series_renderer);
 		
 		//Create the chart with our data and setup
-		GraphicalView mChart = (GraphicalView) ChartFactory.getBarChartView(context, dataset, dataset_renderer, Type.DEFAULT); //bar chart
-		//mChart = (GraphicalView) ChartFactory.getLineChartView(context, dataset, dataset_renderer); //line chart
+		GraphicalView mChart = (GraphicalView) ChartFactory.getBarChartView(context, dataset, dataset_renderer, Type.DEFAULT); //show bar chart
+		//mChart = (GraphicalView) ChartFactory.getLineChartView(context, dataset, dataset_renderer); //show line chart
         
         chart.addView(mChart);
         
