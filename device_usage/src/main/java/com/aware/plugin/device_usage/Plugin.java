@@ -39,12 +39,15 @@ public class Plugin extends Aware_Plugin {
     //private variables that hold the latest values to be shared whenever ACTION_AWARE_CURRENT_CONTEXT is broadcasted
     private static double elapsed_device_off;
     private static double elapsed_device_on;
+
+    private static Intent aware;
+    private static ContextProducer sContext;
     
     /**
      * BroadcastReceiver that will receiver screen ON events from AWARE
      */
-    private ScreenListener screenListener = new ScreenListener();
-    public class ScreenListener extends BroadcastReceiver {
+    private static ScreenListener screenListener = new ScreenListener();
+    public static class ScreenListener extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
             if( intent.getAction().equals(Screen.ACTION_AWARE_SCREEN_ON)) {
@@ -74,26 +77,27 @@ public class Plugin extends Aware_Plugin {
             }
             
             //Share context
-            CONTEXT_PRODUCER.onContext();
+            sContext.onContext();
         }
     }
     
     @Override
     public void onCreate() {
         super.onCreate();
-        
-        TAG = "AWARE::Device Usage";
-        
-        Intent aware = new Intent(this, Aware.class);
+
+        aware = new Intent(this, Aware.class);
         startService(aware);
-        
+
+        TAG = "AWARE::Device Usage";
+        DEBUG = Aware.getSetting(this, Aware_Preferences.DEBUG_FLAG).equals("true");
+
         //Set our plugin's settings:
-        if( Aware.getSetting(getApplicationContext(), Settings.STATUS_PLUGIN_DEVICE_USAGE).length() == 0) {
-        	Aware.setSetting(getApplicationContext(), Settings.STATUS_PLUGIN_DEVICE_USAGE, true);
+        if( Aware.getSetting(this, Settings.STATUS_PLUGIN_DEVICE_USAGE).length() == 0) {
+        	Aware.setSetting(this, Settings.STATUS_PLUGIN_DEVICE_USAGE, true);
         }
-        
+
         //Activate the screen
-        Aware.setSetting(getApplicationContext(), Aware_Preferences.STATUS_SCREEN, true);
+        Aware.setSetting(this, Aware_Preferences.STATUS_SCREEN, true);
         
         //We are done with settings, ask AWARE to update
         Intent refresh = new Intent(Aware.ACTION_AWARE_REFRESH);
@@ -108,7 +112,7 @@ public class Plugin extends Aware_Plugin {
         registerReceiver(screenListener, filter);
         
         //Shares this plugin's context to AWARE and applications
-        CONTEXT_PRODUCER = new ContextProducer() {
+        sContext = new ContextProducer() {
             @Override
             public void onContext() {
                 ContentValues context_data = new ContentValues();
@@ -117,10 +121,8 @@ public class Plugin extends Aware_Plugin {
                 context_data.put(DeviceUsage_Data.ELAPSED_DEVICE_OFF, elapsed_device_off);
                 context_data.put(DeviceUsage_Data.ELAPSED_DEVICE_ON, elapsed_device_on);
                 
-                if( Aware.getSetting(getApplicationContext(), Aware_Preferences.DEBUG_FLAG).equals("true") ) {
-                	Log.d(TAG, context_data.toString());
-                }
-                
+                if( DEBUG ) Log.d(TAG, context_data.toString());
+
                 //insert data to table
                 getContentResolver().insert(DeviceUsage_Data.CONTENT_URI, context_data);
                 
@@ -130,7 +132,9 @@ public class Plugin extends Aware_Plugin {
                 sendBroadcast(sharedContext);
             }
         };
-        
+
+        CONTEXT_PRODUCER = sContext;
+
         //Our provider tables
         DATABASE_TABLES = Provider.DATABASE_TABLES;
         //Our table fields
@@ -147,10 +151,12 @@ public class Plugin extends Aware_Plugin {
         unregisterReceiver(screenListener);
         
         //Deactivate the screen
-        Aware.setSetting(getApplicationContext(), Aware_Preferences.STATUS_SCREEN, false);
+        Aware.setSetting(this, Aware_Preferences.STATUS_SCREEN, false);
         
         //We are done with settings, ask AWARE to update
         Intent refresh = new Intent(Aware.ACTION_AWARE_REFRESH);
         sendBroadcast(refresh);
+
+        stopService(aware);
     }
 }

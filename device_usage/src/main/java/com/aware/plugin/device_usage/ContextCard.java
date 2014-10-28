@@ -27,7 +27,6 @@ public class ContextCard implements IContextCard {
 
     /**
      * Empty constructor required for Java reflection to load the card
-     *
      */
     public ContextCard(){};
 
@@ -79,7 +78,7 @@ public class ContextCard implements IContextCard {
 		
 		//Setup the line colors, labels, etc
 		XYSeriesRenderer series_renderer = new XYSeriesRenderer();
-		series_renderer.setColor(Color.BLACK);
+		series_renderer.setColor(Color.parseColor("#33B5E5"));
 		series_renderer.setPointStyle(PointStyle.POINT);
 		series_renderer.setDisplayChartValues(false);
 		series_renderer.setLineWidth(2);

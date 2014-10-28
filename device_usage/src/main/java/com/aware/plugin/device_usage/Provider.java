@@ -18,7 +18,7 @@ import android.os.Environment;
 import android.provider.BaseColumns;
 import android.util.Log;
 
-import com.aware.Aware;
+import com.aware.*;
 import com.aware.utils.DatabaseHelper;
 
 public class Provider extends ContentProvider {
@@ -163,7 +163,7 @@ public class Provider extends ContentProvider {
     @Override
     public boolean onCreate() {
     	
-    	AUTHORITY = getContext().getPackageName() + ".provider.device_usage";
+    	AUTHORITY = BuildConfig.PACKAGE_NAME + ".provider.device_usage";
     	
     	sUriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
         sUriMatcher.addURI(AUTHORITY, DATABASE_TABLES[0], DEVICE_USAGE); //URI for all records

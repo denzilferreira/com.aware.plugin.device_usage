@@ -1,2 +1,4 @@
-include ':aChartAndroidlib', ':aware-core'
+include ':aChartAndroidlib'
 include ':device_usage'
+include ':aware-core'
+project(':aware-core').projectDir = new File(settingsDir, '../aware-client/aware-core')

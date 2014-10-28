@@ -9,6 +9,28 @@ package com.aware.plugin.device_usage;
 
 public final class Manifest {
     public static final class permission {
+        /**  <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> 
+ <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" /> 
+ <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> 
+ <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> 
+ <uses-permission android:name="android.permission.BLUETOOTH" /> 
+ <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" /> 
+ <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" /> 
+ <uses-permission android:name="android.permission.GET_TASKS" /> 
+ <uses-permission android:name="android.permission.READ_SMS" /> 
+ <uses-permission android:name="android.permission.READ_CONTACTS" /> 
+ <uses-permission android:name="android.permission.READ_PHONE_STATE" /> 
+ <uses-permission android:name="android.permission.RESTART_PACKAGES" /> 
+ <uses-permission android:name="android.permission.VIBRATE" /> 
+ <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" /> 
+ <uses-permission android:name="android.permission.WAKE_LOCK" /> 
+ <uses-permission android:name="android.permission.READ_CALL_LOG" /> 
+ <uses-permission android:name="android.permission.CAMERA" /> 
+ <uses-feature android:name="android.hardware.camera" /> 
+ <uses-feature android:name="android.hardware.camera.autofocus" /> 
+ Compatibility for Android Wear 
+ <uses-feature android:name="android.hardware.type.watch" /> 
+         */
         public static final String READ_CONTEXT_DATA="com.aware.READ_CONTEXT_DATA";
         public static final String WRITE_CONTEXT_DATA="com.aware.WRITE_CONTEXT_DATA";
     }

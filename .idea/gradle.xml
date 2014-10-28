@@ -7,9 +7,9 @@
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
           <set>
+            <option value="$PROJECT_DIR$/../aware-client/aware-core" />
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/aChartAndroidlib" />
-            <option value="$PROJECT_DIR$/aware-core" />
             <option value="$PROJECT_DIR$/device_usage" />
           </set>
         </option>

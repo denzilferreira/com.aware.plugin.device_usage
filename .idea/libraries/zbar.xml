@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="zbar">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/aware-core/libs/zbar.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../aware-client/aware-core/libs/zbar.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
