@@ -65,8 +65,8 @@ public class ContextCard implements IContextCard {
 			do{
 				frequencies[phone_usage_times.getInt(1)] = phone_usage_times.getInt(0);
 			} while( phone_usage_times.moveToNext() );
-			phone_usage_times.close();
 		}
+        if( phone_usage_times != null && ! phone_usage_times.isClosed()) phone_usage_times.close();
 		
 		XYSeries xy_series = new XYSeries("Device activity");
 		for( int i = 0; i<frequencies.length; i++ ) {

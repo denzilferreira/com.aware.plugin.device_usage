@@ -59,8 +59,8 @@ public class Plugin extends Aware_Plugin {
                 if( last_time_off != null && last_time_off.moveToFirst() ) {
                     //Calculate how long has it been until now that the screen was off
                     elapsed_device_off = System.currentTimeMillis() - last_time_off.getDouble(last_time_off.getColumnIndex(Screen_Data.TIMESTAMP));
-                    last_time_off.close();
                 }
+                if( last_time_off != null && ! last_time_off.isClosed()) last_time_off.close();
             }
         	
             if ( intent.getAction().equals(Screen.ACTION_AWARE_SCREEN_OFF)) {
@@ -72,8 +72,8 @@ public class Plugin extends Aware_Plugin {
                 if( last_time_on != null && last_time_on.moveToFirst() ) {
                     //Calculate how long has it been until now that the screen was on
                     elapsed_device_on = System.currentTimeMillis() - last_time_on.getDouble(last_time_on.getColumnIndex(Screen_Data.TIMESTAMP));
-                    last_time_on.close();
                 }
+                if( last_time_on != null && ! last_time_on.isClosed()) last_time_on.close();
             }
             
             //Share context
