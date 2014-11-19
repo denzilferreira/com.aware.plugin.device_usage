@@ -8,17 +8,17 @@
         revision="20.0.0"
         sha1="0a7b88ba1496a0b4af76069ad40dacd3897149e0"/>
     <item
-        dex="/Users/denzil/Dropbox/Programming/com.aware.plugin.device_usage/device_usage/build/intermediates/pre-dexed/debug/internal_impl-21.0.0-15831af73bb18b7f5f090c202d4ca8002793df67.jar"
-        jar="/Users/denzil/Dropbox/Programming/com.aware.plugin.device_usage/device_usage/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.0/libs/internal_impl-21.0.0.jar"
-        jumboMode="false"
-        revision="20.0.0"
-        sha1="1609e6d42d0480b0f4188e2c29f75388fa12a8f0"/>
-    <item
         dex="/Users/denzil/Dropbox/Programming/com.aware.plugin.device_usage/device_usage/build/intermediates/pre-dexed/debug/classes-ca61ae1a7696ed3e51c822ef3f0d690c5954337f.jar"
         jar="/Users/denzil/Dropbox/Programming/com.aware.plugin.device_usage/device_usage/build/intermediates/exploded-aar/com.android.support/gridlayout-v7/21.0.0/classes.jar"
         jumboMode="false"
         revision="20.0.0"
         sha1="6c6b497aa9e3aadbaabf975379e7914fa9e65523"/>
+    <item
+        dex="/Users/denzil/Dropbox/Programming/com.aware.plugin.device_usage/device_usage/build/intermediates/pre-dexed/debug/internal_impl-21.0.0-15831af73bb18b7f5f090c202d4ca8002793df67.jar"
+        jar="/Users/denzil/Dropbox/Programming/com.aware.plugin.device_usage/device_usage/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.0/libs/internal_impl-21.0.0.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="1609e6d42d0480b0f4188e2c29f75388fa12a8f0"/>
     <item
         dex="/Users/denzil/Dropbox/Programming/com.aware.plugin.device_usage/device_usage/build/intermediates/pre-dexed/debug/classes-a3d67dd52cd1d604955da6a3abca370361dc40bf.jar"
         jar="/Users/denzil/Dropbox/Programming/com.aware.plugin.device_usage/device_usage/build/intermediates/exploded-aar/com.aware.plugin.device_usage/aChartAndroidlib/unspecified/classes.jar"
@@ -122,11 +122,11 @@
         revision="20.0.0"
         sha1="95fd37732ec852e99f07eeb516a3650172f1d136"/>
     <item
-        dex="/Users/denzil/Dropbox/Programming/com.aware.plugin.device_usage/device_usage/build/intermediates/pre-dexed/debug/classes-4024faac27a1472bf5f09e533605d97a824527e8.jar"
+        dex="/Users/denzil/Dropbox/Programming/com.aware.plugin.device_usage/device_usage/build/intermediates/pre-dexed/release/classes-4024faac27a1472bf5f09e533605d97a824527e8.jar"
         jar="/Users/denzil/Dropbox/Programming/com.aware.plugin.device_usage/device_usage/build/intermediates/exploded-aar/com.aware.plugin.device_usage/aware-core/unspecified/classes.jar"
         jumboMode="false"
         revision="20.0.0"
-        sha1="1374fd60c7aff3f7b75913b3a9bb535b450d279d"/>
+        sha1="7708a123e09b93f173bfd33f7443f720f97e1d89"/>
     <item
         dex="/Users/denzil/Dropbox/Programming/com.aware.plugin.device_usage/device_usage/build/intermediates/pre-dexed/debug/classes-63c70f950fb34a3d5cdc730900dfd1a7bc601944.jar"
         jar="/Users/denzil/Dropbox/Programming/com.aware.plugin.device_usage/device_usage/build/intermediates/exploded-aar/com.google.android.gms/play-services/6.1.11/classes.jar"
