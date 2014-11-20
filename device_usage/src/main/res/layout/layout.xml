@@ -9,14 +9,13 @@
         android:id="@+id/device_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
         android:src="@drawable/ic_action_device_usage" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="The device was off for:  "
+        android:text="Unused for:  "
         android:id="@+id/not_used"
         android:layout_toRightOf="@+id/device_icon"
         android:textColor="#ff000000"
@@ -34,12 +33,44 @@
     <LinearLayout
         android:id="@+id/chart_usage"
         android:layout_width="fill_parent"
-        android:layout_height="40dp"
+        android:layout_height="60dp"
         android:orientation="vertical"
         android:layout_centerVertical="true"
-        android:layout_below="@+id/device_off"
-        android:layout_alignLeft="@+id/not_used">
+        android:layout_below="@+id/device_icon">
 
     </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Today&apos;s total in-use: 0h00"
+        android:id="@+id/total_used"
+        android:layout_alignBottom="@+id/device_icon"
+        android:layout_toRightOf="@+id/device_icon"
+        android:layout_toEndOf="@+id/device_icon"
+        android:textColor="#000" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Average: 0h00"
+        android:id="@+id/average_unused"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:textColor="#000" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Average: 0h00"
+        android:id="@+id/average_used"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:textColor="#000"
+        android:layout_alignRight="@+id/total_used"
+        android:layout_alignBottom="@+id/total_used" />
 
 </RelativeLayout>

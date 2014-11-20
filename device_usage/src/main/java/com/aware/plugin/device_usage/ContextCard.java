@@ -35,38 +35,65 @@ public class ContextCard implements IContextCard {
 	public View getContextCard( Context context ) {
 		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View card = inflater.inflate(R.layout.layout, null);
-		
-		TextView off = (TextView) card.findViewById(R.id.device_off);
 
-		Cursor phone_usage = context.getContentResolver().query(DeviceUsage_Data.CONTENT_URI, null, DeviceUsage_Data.ELAPSED_DEVICE_OFF + " > 0", null, DeviceUsage_Data.TIMESTAMP + " DESC LIMIT 1");
-        if( phone_usage != null && phone_usage.moveToFirst() ) {
-        	double average_phone_off = phone_usage.getDouble(phone_usage.getColumnIndex(DeviceUsage_Data.ELAPSED_DEVICE_OFF));
-            off.setText( Converters.readable_elapsed( (long) average_phone_off ) );
+        //Get today's time from the beginning in milliseconds
+        Calendar c = Calendar.getInstance();
+        c.setTimeInMillis(System.currentTimeMillis());
+        c.set(Calendar.HOUR_OF_DAY, 0);
+        c.set(Calendar.MINUTE, 0);
+        c.set(Calendar.SECOND, 0);
+        c.set(Calendar.MILLISECOND, 0);
+
+		TextView just_off = (TextView) card.findViewById(R.id.device_off);
+        TextView average_off = (TextView) card.findViewById(R.id.average_unused);
+        TextView total_on = (TextView) card.findViewById(R.id.total_used);
+        TextView average_on = (TextView) card.findViewById(R.id.average_used);
+
+        String[] columns = new String[]{"AVG(" + DeviceUsage_Data.ELAPSED_DEVICE_OFF + ") as average"};
+        Cursor avg_off = context.getContentResolver().query(DeviceUsage_Data.CONTENT_URI, columns, DeviceUsage_Data.ELAPSED_DEVICE_OFF + " > 0", null, null);
+        if( avg_off != null && avg_off.moveToFirst()) {
+            double average_unused = avg_off.getDouble(0);
+            average_off.setText( "Average: " + Converters.readable_elapsed((long) average_unused));
         }
-        if( phone_usage != null && ! phone_usage.isClosed() ) phone_usage.close();
+        if( avg_off != null && ! avg_off.isClosed() ) avg_off.close();
+
+        columns = new String[]{"AVG(" + DeviceUsage_Data.ELAPSED_DEVICE_ON + ") as average"};
+        Cursor avg_on = context.getContentResolver().query(DeviceUsage_Data.CONTENT_URI, columns, DeviceUsage_Data.ELAPSED_DEVICE_ON + " > 0", null, null);
+        if( avg_on != null && avg_on.moveToFirst()) {
+            double average_used = avg_on.getDouble(0);
+            average_on.setText( "Average: " + Converters.readable_elapsed((long) average_used));
+        }
+        if( avg_on != null && ! avg_on.isClosed() ) avg_on.close();
+
+        columns = new String[]{"SUM(" + DeviceUsage_Data.ELAPSED_DEVICE_ON + ") as total"};
+        Cursor sum_on = context.getContentResolver().query(DeviceUsage_Data.CONTENT_URI, columns, DeviceUsage_Data.ELAPSED_DEVICE_ON + " > 0 AND " + DeviceUsage_Data.TIMESTAMP + " > " + c.getTimeInMillis(), null, null);
+        if( sum_on != null && sum_on.moveToFirst()) {
+            double total_used = sum_on.getDouble(0);
+            total_on.setText( "Today's total in-use: " + Converters.readable_elapsed((long) total_used));
+        }
+        if( sum_on != null && ! sum_on.isClosed() ) sum_on.close();
+        
+		Cursor off = context.getContentResolver().query(DeviceUsage_Data.CONTENT_URI, null, DeviceUsage_Data.ELAPSED_DEVICE_OFF + " > 0", null, DeviceUsage_Data.TIMESTAMP + " DESC LIMIT 1");
+        if( off != null && off.moveToFirst() ) {
+        	double phone_off = off.getDouble(off.getColumnIndex(DeviceUsage_Data.ELAPSED_DEVICE_OFF));
+            just_off.setText( Converters.readable_elapsed( (long) phone_off ) );
+        }
+        if( off != null && ! off.isClosed() ) off.close();
         
         LinearLayout chart = (LinearLayout) card.findViewById(R.id.chart_usage); 
         chart.removeAllViews();
-        
-		//Get today's time from the beginning in milliseconds
-		Calendar c = Calendar.getInstance();
-		c.setTimeInMillis(System.currentTimeMillis());
-		c.set(Calendar.HOUR_OF_DAY, 0);
-		c.set(Calendar.MINUTE, 0);
-		c.set(Calendar.SECOND, 0);
-		c.set(Calendar.MILLISECOND, 0);
-		
+
 		//stores screen on counts grouped per hour
 		int[] frequencies = new int[24];
 		
 		//add frequencies to the right hour buffer
-		Cursor phone_usage_times = context.getContentResolver().query(DeviceUsage_Data.CONTENT_URI, new String[]{ "count(*) as frequency","strftime('%H',"+ DeviceUsage_Data.TIMESTAMP + "/1000, 'unixepoch', 'localtime')+0 as time_of_day" }, DeviceUsage_Data.ELAPSED_DEVICE_ON + " > 0 AND " + DeviceUsage_Data.TIMESTAMP + " >= " + c.getTimeInMillis() + " ) GROUP BY ( time_of_day ", null, DeviceUsage_Data.TIMESTAMP + " ASC");
-		if( phone_usage_times != null && phone_usage_times.moveToFirst() ) {
+		Cursor off_times = context.getContentResolver().query(DeviceUsage_Data.CONTENT_URI, new String[]{ "count(*) as frequency","strftime('%H',"+ DeviceUsage_Data.TIMESTAMP + "/1000, 'unixepoch', 'localtime')+0 as time_of_day" }, DeviceUsage_Data.ELAPSED_DEVICE_ON + " > 0 AND " + DeviceUsage_Data.TIMESTAMP + " >= " + c.getTimeInMillis() + " ) GROUP BY ( time_of_day ", null, DeviceUsage_Data.TIMESTAMP + " ASC");
+		if( off_times != null && off_times.moveToFirst() ) {
 			do{
-				frequencies[phone_usage_times.getInt(1)] = phone_usage_times.getInt(0);
-			} while( phone_usage_times.moveToNext() );
+				frequencies[off_times.getInt(1)] = off_times.getInt(0);
+			} while( off_times.moveToNext() );
 		}
-        if( phone_usage_times != null && ! phone_usage_times.isClosed()) phone_usage_times.close();
+        if( off_times != null && ! off_times.isClosed()) off_times.close();
 		
 		XYSeries xy_series = new XYSeries("Device activity");
 		for( int i = 0; i<frequencies.length; i++ ) {
@@ -115,7 +142,7 @@ public class ContextCard implements IContextCard {
 		dataset_renderer.addSeriesRenderer(series_renderer);
 		
 		//Create the chart with our data and setup
-		GraphicalView mChart = (GraphicalView) ChartFactory.getBarChartView(context, dataset, dataset_renderer, Type.DEFAULT); //show bar chart
+		GraphicalView mChart = ChartFactory.getBarChartView(context, dataset, dataset_renderer, Type.DEFAULT); //show bar chart
 		//mChart = (GraphicalView) ChartFactory.getLineChartView(context, dataset, dataset_renderer); //show line chart
         
         chart.addView(mChart);
