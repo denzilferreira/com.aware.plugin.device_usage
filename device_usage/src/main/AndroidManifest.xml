@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.aware.plugin.device_usage"
-    android:versionCode="10"
+    android:versionCode="11"
     android:versionName="1.6" >
 
     <uses-sdk
@@ -15,9 +15,6 @@
         <service android:name="com.aware.plugin.device_usage.Plugin" android:exported="true" android:label="Phone Usage"></service>
         <provider android:name="com.aware.plugin.device_usage.Provider" android:authorities="${applicationId}.provider.device_usage" android:exported="true" android:readPermission="com.aware.READ_CONTEXT_DATA" android:writePermission="com.aware.WRITE_CONTEXT_DATA"></provider>
         <activity android:name="com.aware.plugin.device_usage.Settings" android:exported="true"></activity>
-
-        <service android:name="com.aware.Aware"></service>
-        <service android:name="com.aware.Screen"></service>
 
     </application>
 
