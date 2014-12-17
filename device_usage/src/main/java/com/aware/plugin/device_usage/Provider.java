@@ -163,7 +163,7 @@ public class Provider extends ContentProvider {
     @Override
     public boolean onCreate() {
     	
-    	AUTHORITY = BuildConfig.PACKAGE_NAME + ".provider.device_usage";
+    	AUTHORITY = getContext().getPackageName() + ".provider.device_usage";
     	
     	sUriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
         sUriMatcher.addURI(AUTHORITY, DATABASE_TABLES[0], DEVICE_USAGE); //URI for all records
