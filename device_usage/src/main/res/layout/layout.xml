@@ -44,33 +44,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Today&apos;s total in-use: 0h00"
-        android:id="@+id/total_used"
-        android:layout_alignBottom="@+id/device_icon"
-        android:layout_toRightOf="@+id/device_icon"
-        android:layout_toEndOf="@+id/device_icon"
-        android:textColor="#000" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Average: 0h00"
         android:id="@+id/average_unused"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:textColor="#000" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Average: 0h00"
-        android:id="@+id/average_used"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:textColor="#000"
-        android:layout_alignRight="@+id/total_used"
-        android:layout_alignBottom="@+id/total_used" />
 
 </RelativeLayout>

@@ -46,8 +46,6 @@ public class ContextCard implements IContextCard {
 
 		TextView just_off = (TextView) card.findViewById(R.id.device_off);
         TextView average_off = (TextView) card.findViewById(R.id.average_unused);
-        TextView total_on = (TextView) card.findViewById(R.id.total_used);
-        TextView average_on = (TextView) card.findViewById(R.id.average_used);
 
         String[] columns = new String[]{"AVG(" + DeviceUsage_Data.ELAPSED_DEVICE_OFF + ") as average"};
         Cursor avg_off = context.getContentResolver().query(DeviceUsage_Data.CONTENT_URI, columns, DeviceUsage_Data.ELAPSED_DEVICE_OFF + " > 0", null, null);
@@ -57,23 +55,7 @@ public class ContextCard implements IContextCard {
         }
         if( avg_off != null && ! avg_off.isClosed() ) avg_off.close();
 
-        columns = new String[]{"AVG(" + DeviceUsage_Data.ELAPSED_DEVICE_ON + ") as average"};
-        Cursor avg_on = context.getContentResolver().query(DeviceUsage_Data.CONTENT_URI, columns, DeviceUsage_Data.ELAPSED_DEVICE_ON + " > 0", null, null);
-        if( avg_on != null && avg_on.moveToFirst()) {
-            double average_used = avg_on.getDouble(0);
-            average_on.setText( "Average: " + Converters.readable_elapsed((long) average_used));
-        }
-        if( avg_on != null && ! avg_on.isClosed() ) avg_on.close();
-
-        columns = new String[]{"SUM(" + DeviceUsage_Data.ELAPSED_DEVICE_ON + ") as total"};
-        Cursor sum_on = context.getContentResolver().query(DeviceUsage_Data.CONTENT_URI, columns, DeviceUsage_Data.ELAPSED_DEVICE_ON + " > 0 AND " + DeviceUsage_Data.TIMESTAMP + " > " + c.getTimeInMillis(), null, null);
-        if( sum_on != null && sum_on.moveToFirst()) {
-            double total_used = sum_on.getDouble(0);
-            total_on.setText( "Today's total in-use: " + Converters.readable_elapsed((long) total_used));
-        }
-        if( sum_on != null && ! sum_on.isClosed() ) sum_on.close();
-        
-		Cursor off = context.getContentResolver().query(DeviceUsage_Data.CONTENT_URI, null, DeviceUsage_Data.ELAPSED_DEVICE_OFF + " > 0", null, DeviceUsage_Data.TIMESTAMP + " DESC LIMIT 1");
+		Cursor off = context.getContentResolver().query(DeviceUsage_Data.CONTENT_URI, null, DeviceUsage_Data.ELAPSED_DEVICE_OFF + " > 0 AND " + DeviceUsage_Data.TIMESTAMP + " >= " + c.getTimeInMillis(), null, DeviceUsage_Data.TIMESTAMP + " DESC LIMIT 1");
         if( off != null && off.moveToFirst() ) {
         	double phone_off = off.getDouble(off.getColumnIndex(DeviceUsage_Data.ELAPSED_DEVICE_OFF));
             just_off.setText( Converters.readable_elapsed( (long) phone_off ) );
