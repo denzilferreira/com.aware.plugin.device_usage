@@ -31,12 +31,16 @@
         android:textColor="#ff000000" />
 
     <LinearLayout
-        android:id="@+id/chart_usage"
+        android:id="@+id/chart_container"
         android:layout_width="fill_parent"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_centerVertical="true"
         android:layout_below="@+id/device_icon">
+
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/usage_chart"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"/>
 
     </LinearLayout>
 
