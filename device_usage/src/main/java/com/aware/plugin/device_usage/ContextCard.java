@@ -23,18 +23,12 @@ import java.util.Calendar;
 
 public class ContextCard implements IContextCard {
 
-	private static BarChart mChart;
-
-    /**
-     * Empty constructor required for Java reflection to load the card
-     */
-    public ContextCard(){}
+	public ContextCard(){}
 
 	public View getContextCard( Context context ) {
 		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View card = inflater.inflate(R.layout.layout, null);
         LinearLayout chart = (LinearLayout) card.findViewById(R.id.chart_container);
-        mChart = (BarChart) chart.findViewById(R.id.usage_chart);
 
         //Get today's time from the beginning in milliseconds
         Calendar c = Calendar.getInstance();
@@ -96,17 +90,23 @@ public class ContextCard implements IContextCard {
 
 		BarDataSet dataSet = new BarDataSet(barEntries, "Amount of times used");
 		dataSet.setColor(Color.parseColor("#33B5E5"));
+		dataSet.setDrawValues(false);
 
 		BarData data = new BarData(x_hours, dataSet);
+
+		BarChart mChart = new BarChart(context);
+        mChart.setContentDescription("");
+        mChart.setDescription("");
 		mChart.setMinimumHeight(200);
 		mChart.setBackgroundColor(Color.WHITE);
 		mChart.setDrawGridBackground(false);
 		mChart.setDrawBorders(false);
 
 		YAxis left = mChart.getAxisLeft();
-		left.setDrawLabels(false);
-		left.setDrawGridLines(false);
-		left.setDrawAxisLine(false);
+		left.setDrawLabels(true);
+		left.setDrawGridLines(true);
+		left.setDrawAxisLine(true);
+
 		YAxis right = mChart.getAxisRight();
 		right.setDrawAxisLine(false);
 		right.setDrawLabels(false);
@@ -118,8 +118,8 @@ public class ContextCard implements IContextCard {
 		bottom.setDrawGridLines(false);
 
 		mChart.setData(data);
-		mChart.animateX(1000);
 		mChart.invalidate();
+		mChart.animateX(1000);
 
 		return mChart;
 	}

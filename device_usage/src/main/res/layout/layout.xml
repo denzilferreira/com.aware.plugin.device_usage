@@ -37,11 +37,6 @@
         android:orientation="vertical"
         android:layout_below="@+id/device_icon">
 
-        <com.github.mikephil.charting.charts.BarChart
-            android:id="@+id/usage_chart"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"/>
-
     </LinearLayout>
 
     <TextView
