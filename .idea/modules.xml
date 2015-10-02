@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Device_usage.iml" filepath="$PROJECT_DIR$/Device_usage.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../com.aware.lib.achart/achart/com.aware.lib.achart.iml" filepath="$PROJECT_DIR$/../com.aware.lib.achart/achart/com.aware.lib.achart.iml" />
       <module fileurl="file://$PROJECT_DIR$/com.aware.plugin.device_usage.iml" filepath="$PROJECT_DIR$/com.aware.plugin.device_usage.iml" />
       <module fileurl="file://$PROJECT_DIR$/device_usage/device_usage.iml" filepath="$PROJECT_DIR$/device_usage/device_usage.iml" />
     </modules>
   </component>
 </project>
-
