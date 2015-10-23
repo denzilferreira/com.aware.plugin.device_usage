@@ -8,8 +8,8 @@ android {
         applicationId 'com.aware.plugin.device_usage'
         minSdkVersion 10
         targetSdkVersion 23
-        versionCode 15
-        versionName "2.1"
+        versionCode 16
+        versionName "2.2"
     }
     buildTypes {
         release {
@@ -25,8 +25,8 @@ repositories {
 }
 
 dependencies {
-    compile 'com.android.support:appcompat-v7:23.0.1'
-    compile 'com.android.support:cardview-v7:23.0.1'
-    compile 'com.awareframework:aware-core:3.6.4@aar'
+    compile 'com.android.support:appcompat-v7:23.1.0'
+    compile 'com.android.support:cardview-v7:23.1.0'
+    compile 'com.awareframework:aware-core:+@aar'
     compile 'com.github.PhilJay:MPAndroidChart:v2.1.3'
 }

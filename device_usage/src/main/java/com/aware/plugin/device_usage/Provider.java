@@ -68,7 +68,7 @@ public class Provider extends ContentProvider {
     /**
      * Database stored in external folder: /AWARE/plugin_device_usage.db
      */
-    public static final String DATABASE_NAME = Environment.getExternalStorageDirectory() + "/AWARE/plugin_device_usage.db";
+    public static final String DATABASE_NAME = "plugin_device_usage.db";
     
     /**
      * Database tables:<br/>

@@ -17,38 +17,38 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
 	 * State of this plugin
 	 */
 	public static final String STATUS_PLUGIN_DEVICE_USAGE = "status_plugin_device_usage";
-	
+
+	private static CheckBoxPreference check;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		addPreferencesFromResource(R.xml.preferences);
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
 		prefs.registerOnSharedPreferenceChangeListener(this);
-		syncSettings();
 	}
-	
-	private void syncSettings() {
-		CheckBoxPreference check = (CheckBoxPreference) findPreference(STATUS_PLUGIN_DEVICE_USAGE);
-		check.setChecked(Aware.getSetting(getApplicationContext(), STATUS_PLUGIN_DEVICE_USAGE).equals("true"));
-	}
-	
+
 	@Override
 	protected void onResume() {
 		super.onResume();
-		syncSettings();
+		check = (CheckBoxPreference) findPreference(STATUS_PLUGIN_DEVICE_USAGE);
+		if( Aware.getSetting(this, STATUS_PLUGIN_DEVICE_USAGE).length() == 0) {
+			Aware.setSetting(this, STATUS_PLUGIN_DEVICE_USAGE, true);
+		}
+		check.setChecked(Aware.getSetting(getApplicationContext(), STATUS_PLUGIN_DEVICE_USAGE).equals("true"));
 	}
 	
 	@Override
 	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
 		Preference preference = (Preference) findPreference(key);
 		if( preference.getKey().equals(STATUS_PLUGIN_DEVICE_USAGE) ) {
-            Aware.setSetting(getApplicationContext(), key, sharedPreferences.getBoolean(key, false));
-
-            if( sharedPreferences.getBoolean(key, false) ) {
-				Aware.startPlugin(getApplicationContext(), getPackageName());
+			boolean is_active = sharedPreferences.getBoolean(key, false);
+			if( is_active ) {
+				Aware.startPlugin(getApplicationContext(), "com.aware.plugin.device_usage");
 			} else {
-				Aware.stopPlugin(getApplicationContext(), getPackageName());
+				Aware.stopPlugin(getApplicationContext(), "com.aware.plugin.device_usage");
 			}
+			check.setChecked(is_active);
 		}
 	}
 }

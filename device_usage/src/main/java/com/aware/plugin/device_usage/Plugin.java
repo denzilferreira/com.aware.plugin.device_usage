@@ -40,7 +40,6 @@ public class Plugin extends Aware_Plugin {
     private static double elapsed_device_off;
     private static double elapsed_device_on;
 
-    private static Intent aware;
     private static ContextProducer sContext;
     
     /**
@@ -85,9 +84,6 @@ public class Plugin extends Aware_Plugin {
     public void onCreate() {
         super.onCreate();
 
-        aware = new Intent(this, Aware.class);
-        startService(aware);
-
         TAG = "AWARE::Device Usage";
         DEBUG = Aware.getSetting(this, Aware_Preferences.DEBUG_FLAG).equals("true");
 
@@ -98,11 +94,7 @@ public class Plugin extends Aware_Plugin {
 
         //Activate the screen
         Aware.setSetting(this, Aware_Preferences.STATUS_SCREEN, true);
-        
-        //We are done with settings, ask AWARE to update
-        Intent refresh = new Intent(Aware.ACTION_AWARE_REFRESH);
-        sendBroadcast(refresh);
-        
+
         //create a context filter
         IntentFilter filter = new IntentFilter();
         filter.addAction(Screen.ACTION_AWARE_SCREEN_ON);
@@ -141,8 +133,15 @@ public class Plugin extends Aware_Plugin {
         TABLES_FIELDS = Provider.TABLES_FIELDS;
         //Our provider URI
         CONTEXT_URIS = new Uri[]{ DeviceUsage_Data.CONTENT_URI };
+
+        Aware.startPlugin(this, "com.aware.plugin.device_usage");
     }
-    
+
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+        return super.onStartCommand(intent, flags, startId);
+    }
+
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -152,11 +151,7 @@ public class Plugin extends Aware_Plugin {
         
         //Deactivate the screen
         Aware.setSetting(this, Aware_Preferences.STATUS_SCREEN, false);
-        
-        //We are done with settings, ask AWARE to update
-        Intent refresh = new Intent(Aware.ACTION_AWARE_REFRESH);
-        sendBroadcast(refresh);
 
-        stopService(aware);
+        Aware.stopPlugin(this, "com.aware.plugin.device_usage");
     }
 }
