@@ -2,67 +2,67 @@
 <items version="2" >
 
     <item
-        jar="/Users/denzil/Android/com.aware.plugin.device_usage/device_usage/build/intermediates/exploded-aar/com.awareframework/aware-core/3.7.1/jars/libs/zbar.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="0a7b88ba1496a0b4af76069ad40dacd3897149e0">
-        <dex dex="/Users/denzil/Android/com.aware.plugin.device_usage/device_usage/build/intermediates/pre-dexed/debug/zbar-95cd5142c7553bdf71ee98fae6ed7af25e872dce.jar" />
-    </item>
-    <item
-        jar="/Users/denzil/Android/com.aware.plugin.device_usage/device_usage/build/intermediates/exploded-aar/com.awareframework/aware-core/3.7.1/jars/libs/mqtt-client-0.4.0.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="02315d1759d01e52495e040e6e538aaa2e91c7f6">
-        <dex dex="/Users/denzil/Android/com.aware.plugin.device_usage/device_usage/build/intermediates/pre-dexed/debug/mqtt-client-0.4.0-063eef043b57eea5ef27651fb3fe5082a6af3aec.jar" />
-    </item>
-    <item
-        jar="/Users/denzil/Android/com.aware.plugin.device_usage/device_usage/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.0/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="57ae0d750ff83f0c738d21720224ac7ea866a094">
-        <dex dex="/Users/denzil/Android/com.aware.plugin.device_usage/device_usage/build/intermediates/pre-dexed/debug/classes-d311dc1ffde99e5e637e1fe3e426f3059fd7505c.jar" />
-    </item>
-    <item
-        jar="/Users/denzil/Android/com.aware.plugin.device_usage/device_usage/build/intermediates/exploded-aar/com.awareframework/aware-core/3.7.1/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="b67fef0f9fc88575debc3899c31ee429a92885a7">
-        <dex dex="/Users/denzil/Android/com.aware.plugin.device_usage/device_usage/build/intermediates/pre-dexed/debug/classes-3fb2a8c93922d6e702df552d18e7937f00df488d.jar" />
-    </item>
-    <item
-        jar="/Users/denzil/Android/com.aware.plugin.device_usage/device_usage/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.0/jars/libs/internal_impl-23.1.0.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="8716243bf04bae8d6c9ca94d27b9a9be7236f0a3">
-        <dex dex="/Users/denzil/Android/com.aware.plugin.device_usage/device_usage/build/intermediates/pre-dexed/debug/internal_impl-23.1.0-8d0b6b3ca8f4103b152e64e3eb86e363d9fa3f88.jar" />
-    </item>
-    <item
         jar="/Users/denzil/.gradle/caches/modules-2/files-2.1/com.github.PhilJay/MPAndroidChart/v2.1.3/3fce86548feba9dd220128fa651498c51d099cd8/MPAndroidChart-v2.1.3.jar"
         jumboMode="false"
         revision="23.0.1"
         sha1="3fce86548feba9dd220128fa651498c51d099cd8">
-        <dex dex="/Users/denzil/Android/com.aware.plugin.device_usage/device_usage/build/intermediates/pre-dexed/debug/MPAndroidChart-v2.1.3-79c6229f1583c078c7c779a6e3749d9c443f18a0.jar" />
-    </item>
-    <item
-        jar="/Users/denzil/Android/com.aware.plugin.device_usage/device_usage/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.0/jars/classes.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="ddde541c289c8b816a8f8fd6c325d80788c522a6">
-        <dex dex="/Users/denzil/Android/com.aware.plugin.device_usage/device_usage/build/intermediates/pre-dexed/debug/classes-8fd5e9a60b48c4e4a4e1ab030b3109e4e896abf0.jar" />
-    </item>
-    <item
-        jar="/Users/denzil/sdk/extras/android/m2repository/com/android/support/support-annotations/23.1.0/support-annotations-23.1.0.jar"
-        jumboMode="false"
-        revision="23.0.1"
-        sha1="92e3fc113ec3ee36b64603a38857b95700025633">
-        <dex dex="/Users/denzil/Android/com.aware.plugin.device_usage/device_usage/build/intermediates/pre-dexed/debug/support-annotations-23.1.0-6ac2e3ca00f9339dbd0ae7f845e44ea1cedf6511.jar" />
+        <dex dex="/Users/denzil/Android/com.aware.plugin.device_usage/device_usage/build/intermediates/pre-dexed/release/MPAndroidChart-v2.1.3-79c6229f1583c078c7c779a6e3749d9c443f18a0.jar" />
     </item>
     <item
         jar="/Users/denzil/Android/com.aware.plugin.device_usage/device_usage/build/intermediates/exploded-aar/com.android.support/cardview-v7/23.1.0/jars/classes.jar"
         jumboMode="false"
         revision="23.0.1"
         sha1="d96886efea7cc74fbb3abd0e3b51d5638fc57be0">
-        <dex dex="/Users/denzil/Android/com.aware.plugin.device_usage/device_usage/build/intermediates/pre-dexed/debug/classes-ad959c0ed9c8df72b10f871111f029ecf14f738d.jar" />
+        <dex dex="/Users/denzil/Android/com.aware.plugin.device_usage/device_usage/build/intermediates/pre-dexed/release/classes-ad959c0ed9c8df72b10f871111f029ecf14f738d.jar" />
+    </item>
+    <item
+        jar="/Users/denzil/Android/com.aware.plugin.device_usage/device_usage/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="ddde541c289c8b816a8f8fd6c325d80788c522a6">
+        <dex dex="/Users/denzil/Android/com.aware.plugin.device_usage/device_usage/build/intermediates/pre-dexed/release/classes-8fd5e9a60b48c4e4a4e1ab030b3109e4e896abf0.jar" />
+    </item>
+    <item
+        jar="/Users/denzil/Android/com.aware.plugin.device_usage/device_usage/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.0/jars/libs/internal_impl-23.1.0.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="8716243bf04bae8d6c9ca94d27b9a9be7236f0a3">
+        <dex dex="/Users/denzil/Android/com.aware.plugin.device_usage/device_usage/build/intermediates/pre-dexed/release/internal_impl-23.1.0-8d0b6b3ca8f4103b152e64e3eb86e363d9fa3f88.jar" />
+    </item>
+    <item
+        jar="/Users/denzil/Android/com.aware.plugin.device_usage/device_usage/build/intermediates/exploded-aar/com.awareframework/aware-core/3.7.7/jars/libs/mqtt-client-0.4.0.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="02315d1759d01e52495e040e6e538aaa2e91c7f6">
+        <dex dex="/Users/denzil/Android/com.aware.plugin.device_usage/device_usage/build/intermediates/pre-dexed/release/mqtt-client-0.4.0-514b6cf5d02ca00da67f5c91465a25d408b39033.jar" />
+    </item>
+    <item
+        jar="/Users/denzil/Android/com.aware.plugin.device_usage/device_usage/build/intermediates/exploded-aar/com.awareframework/aware-core/3.7.7/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="83f9122c5295b734117fac37dd69459cb15c2a07">
+        <dex dex="/Users/denzil/Android/com.aware.plugin.device_usage/device_usage/build/intermediates/pre-dexed/release/classes-39814ce3dc3fde052fb539d82c8f3ed61778a49f.jar" />
+    </item>
+    <item
+        jar="/Users/denzil/Android/com.aware.plugin.device_usage/device_usage/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="57ae0d750ff83f0c738d21720224ac7ea866a094">
+        <dex dex="/Users/denzil/Android/com.aware.plugin.device_usage/device_usage/build/intermediates/pre-dexed/release/classes-d311dc1ffde99e5e637e1fe3e426f3059fd7505c.jar" />
+    </item>
+    <item
+        jar="/Users/denzil/Android/com.aware.plugin.device_usage/device_usage/build/intermediates/exploded-aar/com.awareframework/aware-core/3.7.7/jars/libs/zbar.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="0a7b88ba1496a0b4af76069ad40dacd3897149e0">
+        <dex dex="/Users/denzil/Android/com.aware.plugin.device_usage/device_usage/build/intermediates/pre-dexed/release/zbar-34d649c0c79e2602c0cf58496db7a8fda2df4384.jar" />
+    </item>
+    <item
+        jar="/Users/denzil/sdk/extras/android/m2repository/com/android/support/support-annotations/23.1.0/support-annotations-23.1.0.jar"
+        jumboMode="false"
+        revision="23.0.1"
+        sha1="92e3fc113ec3ee36b64603a38857b95700025633">
+        <dex dex="/Users/denzil/Android/com.aware.plugin.device_usage/device_usage/build/intermediates/pre-dexed/release/support-annotations-23.1.0-6ac2e3ca00f9339dbd0ae7f845e44ea1cedf6511.jar" />
     </item>
 
 </items>

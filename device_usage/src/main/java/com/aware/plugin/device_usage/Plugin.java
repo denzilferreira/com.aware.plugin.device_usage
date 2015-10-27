@@ -139,6 +139,8 @@ public class Plugin extends Aware_Plugin {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        super.onStartCommand(intent, flags, startId);
+
         return super.onStartCommand(intent, flags, startId);
     }
 
