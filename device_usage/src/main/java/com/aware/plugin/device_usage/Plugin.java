@@ -139,8 +139,7 @@ public class Plugin extends Aware_Plugin {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        super.onStartCommand(intent, flags, startId);
-
+        DEBUG = Aware.getSetting(this, Aware_Preferences.DEBUG_FLAG).equals("true");
         return super.onStartCommand(intent, flags, startId);
     }
 
