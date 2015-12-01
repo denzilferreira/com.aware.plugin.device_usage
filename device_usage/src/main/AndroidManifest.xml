@@ -9,8 +9,6 @@
         android:theme="@style/Theme.Aware"
         tools:replace="android:icon" >
 
-        <meta-data android:name="com.google.android.gms.version" tools:node="remove" />
-
         <service android:name="com.aware.plugin.device_usage.Plugin" android:exported="true" android:label="Phone Usage"/>
         <provider android:name="com.aware.plugin.device_usage.Provider" android:authorities="${applicationId}.provider.device_usage" android:exported="true" android:readPermission="com.aware.READ_CONTEXT_DATA" android:writePermission="com.aware.WRITE_CONTEXT_DATA"/>
         <activity android:name="com.aware.plugin.device_usage.Settings" android:exported="true" android:theme="@style/Theme.Aware"/>
