@@ -30,4 +30,5 @@ dependencies {
     compile 'com.awareframework:aware-core:3.9.7@aar'
     compile 'com.github.PhilJay:MPAndroidChart:v2.1.3'
     compile 'com.google.android.gms:play-services-vision:8.4.0'
+    compile 'com.koushikdutta.ion:ion:2.1.6'
 }
