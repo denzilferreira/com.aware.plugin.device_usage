@@ -906,6 +906,8 @@ public final class R {
 		public static final int common_google_play_services_network_error_text = 0x7f06001d;
 		public static final int common_google_play_services_network_error_title = 0x7f06001e;
 		public static final int common_google_play_services_notification_ticker = 0x7f06001f;
+		public static final int common_google_play_services_restricted_profile_text = 0x7f060020;
+		public static final int common_google_play_services_restricted_profile_title = 0x7f060021;
 		public static final int common_google_play_services_sign_in_failed_text = 0x7f060022;
 		public static final int common_google_play_services_sign_in_failed_title = 0x7f060023;
 		public static final int common_google_play_services_unknown_issue = 0x7f060024;
@@ -916,6 +918,7 @@ public final class R {
 		public static final int common_google_play_services_update_title = 0x7f060029;
 		public static final int common_google_play_services_updating_text = 0x7f06002a;
 		public static final int common_google_play_services_updating_title = 0x7f06002b;
+		public static final int common_google_play_services_wear_update_text = 0x7f06002c;
 		public static final int common_open_on_phone = 0x7f06002d;
 		public static final int common_signin_button_text = 0x7f06002e;
 		public static final int common_signin_button_text_long = 0x7f06002f;
