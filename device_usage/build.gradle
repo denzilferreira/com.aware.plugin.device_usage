@@ -49,14 +49,14 @@ bintray {
         repo = 'com.awareframework'
         name = android.defaultConfig.applicationId
         licenses = ['Apache-2.0']
-        websiteUrl = 'https://github.com/denzilferreira/com.aware.plugin.google.device_usage' //EDIT ME
-        issueTrackerUrl = 'https://github.com/denzilferreira/com.aware.plugin.google.device_usage/issues' //EDIT ME
+        websiteUrl = 'https://github.com/denzilferreira/com.aware.plugin.device_usage' //EDIT ME
+        issueTrackerUrl = 'https://github.com/denzilferreira/com.aware.plugin.device_usage/issues' //EDIT ME
         labels = ['aar','android','framework','aware']
         publicDownloadNumbers = true
-        vcsUrl = 'https://github.com/denzilferreira/com.aware.plugin.google.device_usage.git' //EDIT ME
+        vcsUrl = 'https://github.com/denzilferreira/com.aware.plugin.device_usage.git' //EDIT ME
         desc = "AWARE Plugin: Device Usage" //EDIT ME
         userOrg = user
-        githubRepo = "denzilferreira/com.aware.plugin.google.device_usage" //EDIT ME
+        githubRepo = "denzilferreira/com.aware.plugin.device_usage" //EDIT ME
 
         version {
             name = "$version_readable"
