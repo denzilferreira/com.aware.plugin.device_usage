@@ -5,6 +5,7 @@ import android.database.Cursor;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -28,7 +29,8 @@ public class ContextCard implements IContextCard {
 	public View getContextCard( Context context ) {
 		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View card = inflater.inflate(R.layout.layout, null);
-        LinearLayout chart = (LinearLayout) card.findViewById(R.id.chart_container);
+
+        BarChart chart = (BarChart) card.findViewById(R.id.barPlot);
 
         //Get today's time from the beginning in milliseconds
         Calendar c = Calendar.getInstance();
@@ -56,14 +58,12 @@ public class ContextCard implements IContextCard {
         }
         if( off != null && ! off.isClosed() ) off.close();
 
-		chart.removeAllViews();
-		chart.addView(drawGraph(context));
-		chart.invalidate();
+		drawGraph(context, chart);
 
         return card;
 	}
 
-	private BarChart drawGraph( Context context ) {
+	private BarChart drawGraph( Context context, BarChart mChart ) {
 
 		//Get today's time from the beginning in milliseconds
 		Calendar c = Calendar.getInstance();
@@ -94,10 +94,13 @@ public class ContextCard implements IContextCard {
 
 		BarData data = new BarData(x_hours, dataSet);
 
-		BarChart mChart = new BarChart(context);
-        mChart.setContentDescription("");
+		mChart.setContentDescription("");
         mChart.setDescription("");
-		mChart.setMinimumHeight(200);
+
+		ViewGroup.LayoutParams params = mChart.getLayoutParams();
+		params.height = 300;
+		mChart.setLayoutParams(params);
+
 		mChart.setBackgroundColor(Color.WHITE);
 		mChart.setDrawGridBackground(false);
 		mChart.setDrawBorders(false);
@@ -107,10 +110,7 @@ public class ContextCard implements IContextCard {
 		left.setDrawGridLines(true);
 		left.setDrawAxisLine(true);
 
-		YAxis right = mChart.getAxisRight();
-		right.setDrawAxisLine(false);
-		right.setDrawLabels(false);
-		right.setDrawGridLines(false);
+        mChart.getAxisRight().setEnabled(false);
 
 		XAxis bottom = mChart.getXAxis();
 		bottom.setPosition(XAxis.XAxisPosition.BOTTOM);

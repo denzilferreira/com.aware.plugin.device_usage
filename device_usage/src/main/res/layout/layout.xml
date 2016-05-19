@@ -30,14 +30,15 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:textColor="#ff000000" />
 
-    <LinearLayout
-        android:id="@+id/chart_container"
+    <com.github.mikephil.charting.charts.BarChart
+        android:id="@+id/barPlot"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_below="@+id/device_icon">
+        android:layout_below="@+id/device_icon"
+        android:minHeight="100dp">
 
-    </LinearLayout>
+    </com.github.mikephil.charting.charts.BarChart>
 
     <TextView
         android:layout_width="wrap_content"

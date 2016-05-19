@@ -3,13 +3,16 @@
 */
 package com.aware.plugin.device_usage;
 
+import android.Manifest;
 import android.content.BroadcastReceiver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
 import com.aware.Aware;
@@ -17,6 +20,7 @@ import com.aware.Aware_Preferences;
 import com.aware.Screen;
 import com.aware.plugin.device_usage.Provider.DeviceUsage_Data;
 import com.aware.providers.Screen_Provider.Screen_Data;
+import com.aware.ui.PermissionsHandler;
 import com.aware.utils.Aware_Plugin;
 
 public class Plugin extends Aware_Plugin {
@@ -85,15 +89,6 @@ public class Plugin extends Aware_Plugin {
         super.onCreate();
 
         TAG = "AWARE::Device Usage";
-        DEBUG = Aware.getSetting(this, Aware_Preferences.DEBUG_FLAG).equals("true");
-
-        //Set our plugin's settings:
-        if( Aware.getSetting(this, Settings.STATUS_PLUGIN_DEVICE_USAGE).length() == 0) {
-        	Aware.setSetting(this, Settings.STATUS_PLUGIN_DEVICE_USAGE, true);
-        }
-
-        //Activate the screen
-        Aware.setSetting(this, Aware_Preferences.STATUS_SCREEN, true);
 
         //create a context filter
         IntentFilter filter = new IntentFilter();
@@ -134,12 +129,25 @@ public class Plugin extends Aware_Plugin {
         //Our provider URI
         CONTEXT_URIS = new Uri[]{ DeviceUsage_Data.CONTENT_URI };
 
+        Intent requestPermissions = new Intent(this, PermissionsHandler.class);
+        requestPermissions.putExtra(PermissionsHandler.EXTRA_REQUIRED_PERMISSIONS, REQUIRED_PERMISSIONS);
+        requestPermissions.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(requestPermissions);
+
         Aware.startPlugin(this, "com.aware.plugin.device_usage");
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        DEBUG = Aware.getSetting(this, Aware_Preferences.DEBUG_FLAG).equals("true");
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+            DEBUG = Aware.getSetting(this, Aware_Preferences.DEBUG_FLAG).equals("true");
+
+            Aware.setSetting(this, Settings.STATUS_PLUGIN_DEVICE_USAGE, true);
+
+            //Activate the screen
+            Aware.setSetting(this, Aware_Preferences.STATUS_SCREEN, true);
+        }
+
         return super.onStartCommand(intent, flags, startId);
     }
 
@@ -153,6 +161,7 @@ public class Plugin extends Aware_Plugin {
         //Deactivate the screen
         Aware.setSetting(this, Aware_Preferences.STATUS_SCREEN, false);
 
+        Aware.setSetting(this, Settings.STATUS_PLUGIN_DEVICE_USAGE, false);
         Aware.stopPlugin(this, "com.aware.plugin.device_usage");
     }
 }

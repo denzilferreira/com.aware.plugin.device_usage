@@ -1701,10 +1701,10 @@ containing a value of this type.
         public static final int alertTitle=0x7f0d0030;
         public static final int always=0x7f0d001c;
         public static final int average_unused=0x7f0d0065;
+        public static final int barPlot=0x7f0d0064;
         public static final int beginning=0x7f0d0019;
         public static final int buttonPanel=0x7f0d002b;
         public static final int cancel_action=0x7f0d0067;
-        public static final int chart_container=0x7f0d0064;
         public static final int checkbox=0x7f0d0039;
         public static final int checkbox_container=0x7f0d0052;
         public static final int chronometer=0x7f0d006d;
