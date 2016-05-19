@@ -1,6 +1,4 @@
 apply plugin: 'com.android.application'
-//apply plugin: 'com.android.library'
-
 apply plugin: 'com.jfrog.bintray'
 
 version = version_readable
@@ -69,7 +67,6 @@ bintray {
 
 repositories {
     maven { url "https://jitpack.io" }
-    maven { url "https://oss.sonatype.org/content/repositories/releases/" }
 }
 
 dependencies {
