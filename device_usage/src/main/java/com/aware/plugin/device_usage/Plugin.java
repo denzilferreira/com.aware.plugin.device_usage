@@ -49,7 +49,6 @@ public class Plugin extends Aware_Plugin {
      * BroadcastReceiver that will receiver screen ON events from AWARE
      */
     private static ScreenListener screenListener = new ScreenListener();
-
     public static class ScreenListener extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -141,9 +140,7 @@ public class Plugin extends Aware_Plugin {
 
         if (permissions_ok) {
             DEBUG = Aware.getSetting(this, Aware_Preferences.DEBUG_FLAG).equals("true");
-
             Aware.setSetting(this, Settings.STATUS_PLUGIN_DEVICE_USAGE, true);
-            Aware.setSetting(this, Aware_Preferences.STATUS_SCREEN, true);
             Aware.startScreen(this);
         } else {
             Intent requestPermissions = new Intent(this, PermissionsHandler.class);
@@ -159,13 +156,9 @@ public class Plugin extends Aware_Plugin {
     public void onDestroy() {
         super.onDestroy();
 
-        //unregister our screen context receiver from Android
         unregisterReceiver(screenListener);
 
-        //Deactivate the screen
-        Aware.setSetting(this, Aware_Preferences.STATUS_SCREEN, false);
         Aware.stopScreen(this);
-
         Aware.setSetting(this, Settings.STATUS_PLUGIN_DEVICE_USAGE, false);
         Aware.stopPlugin(this, "com.aware.plugin.device_usage");
     }
