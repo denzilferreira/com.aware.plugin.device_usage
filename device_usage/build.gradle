@@ -5,12 +5,12 @@ version = version_readable
 group = "com.awareframework"
 
 android {
-    compileSdkVersion 23
-    buildToolsVersion '23.0.3'
+    compileSdkVersion 24
+    buildToolsVersion '24.0.1'
     defaultConfig {
         applicationId 'com.aware.plugin.device_usage'
         minSdkVersion 10
-        targetSdkVersion 23
+        targetSdkVersion 24
         versionCode version_code
         versionName version_readable
     }
@@ -66,7 +66,7 @@ bintray {
 }
 
 repositories {
-    maven { url "https://jitpack.io" }
+    maven { url "https://jitpack.io" } //MPAndroidChart
 }
 
 dependencies {
