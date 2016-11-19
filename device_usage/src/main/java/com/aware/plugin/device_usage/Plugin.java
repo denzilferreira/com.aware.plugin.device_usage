@@ -79,7 +79,8 @@ public class Plugin extends Aware_Plugin {
             }
 
             //Share context
-            sContext.onContext();
+            if (Plugin.sContext != null)
+                Plugin.sContext.onContext();
         }
     }
 
@@ -156,11 +157,11 @@ public class Plugin extends Aware_Plugin {
     public void onDestroy() {
         super.onDestroy();
 
-        unregisterReceiver(screenListener);
+        if (screenListener != null)
+            unregisterReceiver(screenListener);
 
         Aware.setSetting(this, Aware_Preferences.STATUS_SCREEN, false);
         Aware.setSetting(this, Settings.STATUS_PLUGIN_DEVICE_USAGE, false);
-        Aware.stopPlugin(this, "com.aware.plugin.device_usage");
         Aware.stopAWARE();
     }
 }
