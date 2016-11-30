@@ -3,8 +3,6 @@
  */
 package com.aware.plugin.device_usage;
 
-import java.util.HashMap;
-
 import android.content.ContentProvider;
 import android.content.ContentUris;
 import android.content.ContentValues;
@@ -14,12 +12,13 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.net.Uri;
-import android.os.Environment;
 import android.provider.BaseColumns;
 import android.util.Log;
 
-import com.aware.*;
+import com.aware.Aware;
 import com.aware.utils.DatabaseHelper;
+
+import java.util.HashMap;
 
 public class Provider extends ContentProvider {
 

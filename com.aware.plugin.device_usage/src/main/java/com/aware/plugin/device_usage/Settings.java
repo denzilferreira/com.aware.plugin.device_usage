@@ -1,8 +1,5 @@
 package com.aware.plugin.device_usage;
 
-import com.aware.Aware;
-
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
@@ -10,6 +7,8 @@ import android.preference.CheckBoxPreference;
 import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
+
+import com.aware.Aware;
 
 public class Settings extends PreferenceActivity implements OnSharedPreferenceChangeListener {
 
