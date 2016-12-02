@@ -7,6 +7,7 @@
         android:supportsRtl="true">
 
         <service
+            android:label="AWARE: Device Usage"
             android:name="com.aware.plugin.device_usage.Plugin"
             android:exported="true" />
 

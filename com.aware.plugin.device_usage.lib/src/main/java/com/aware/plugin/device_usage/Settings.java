@@ -1,4 +1,4 @@
-package com.aware.plugin.device_usage;
+package com.aware.plugin.device_usage.lib;
 
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
@@ -22,7 +22,7 @@ public class Settings extends PreferenceActivity implements OnSharedPreferenceCh
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        addPreferencesFromResource(com.aware.plugin.device_usage.lib.R.xml.preferences);
+        addPreferencesFromResource(R.xml.preferences);
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         prefs.registerOnSharedPreferenceChangeListener(this);
     }
