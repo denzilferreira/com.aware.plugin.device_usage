@@ -7,5 +7,21 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name">
 
+        <service
+            android:label="AWARE: Device Usage"
+            android:name="com.aware.plugin.device_usage.Plugin"
+            android:exported="true" />
+
+        <provider
+            android:name="com.aware.plugin.device_usage.Provider"
+            android:authorities="${applicationId}.provider.device_usage"
+            android:exported="true"
+            android:readPermission="com.aware.READ_CONTEXT_DATA"
+            android:writePermission="com.aware.WRITE_CONTEXT_DATA" />
+
+        <activity
+            android:name="com.aware.plugin.device_usage.Settings"
+            android:exported="true" />
+
     </application>
 </manifest>

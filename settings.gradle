@@ -1,1 +1,1 @@
-include ':com.aware.plugin.device_usage', ':com.aware.plugin.device_usage.lib'
+include ':com.aware.plugin.device_usage'
