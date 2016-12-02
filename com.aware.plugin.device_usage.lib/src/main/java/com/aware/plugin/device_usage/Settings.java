@@ -1,4 +1,4 @@
-package com.aware.plugin.device_usage.lib;
+package com.aware.plugin.device_usage;
 
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.OnSharedPreferenceChangeListener;

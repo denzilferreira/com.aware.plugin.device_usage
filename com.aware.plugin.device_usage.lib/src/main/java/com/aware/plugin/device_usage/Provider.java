@@ -1,7 +1,7 @@
 /**
  * @author: denzil
  */
-package com.aware.plugin.device_usage.lib;
+package com.aware.plugin.device_usage;
 
 import android.content.ContentProvider;
 import android.content.ContentUris;
