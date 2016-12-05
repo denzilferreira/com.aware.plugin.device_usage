@@ -46,7 +46,7 @@ bintray {
 
     pkg {
         repo = 'com.awareframework'
-        name = android.defaultConfig.applicationId
+        name = "com.aware.plugin.device_usage"
         licenses = ['Apache-2.0']
         websiteUrl = 'https://github.com/denzilferreira/com.aware.plugin.device_usage' //EDIT ME
         issueTrackerUrl = 'https://github.com/denzilferreira/com.aware.plugin.device_usage/issues' //EDIT ME
@@ -66,19 +66,42 @@ bintray {
     }
 }
 
-repositories {
-    maven { url "https://jitpack.io" } //MPAndroidChart, AWARE
+task generateSourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier 'sources'
+}
+
+task generateJavadocs(type: Javadoc) {
+    failOnError false
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+
+task generateJavadocsJar(type: Jar) {
+    from generateJavadocs.destinationDir
+    classifier 'javadoc'
+}
+
+generateJavadocsJar.dependsOn generateJavadocs
+
+artifacts {
+    archives generateJavadocsJar
+    archives generateSourcesJar
 }
 
 configurations.all {
     resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
 }
 
+repositories {
+    maven { url "https://jitpack.io" } //MPAndroidChart, AWARE
+}
+
 dependencies {
     compile 'com.github.PhilJay:MPAndroidChart:v2.1.3'
     compile "com.android.support:appcompat-v7:${support_libs}"
-//    compile "com.awareframework:aware-core:${aware_libs}@aar"
-    compile 'com.github.denzilferreira:aware-client:development-SNAPSHOT'
+    compile "com.awareframework:aware-core:${aware_libs}@aar"
+//    compile 'com.github.denzilferreira:aware-client:development-SNAPSHOT'
     compile "com.koushikdutta.ion:ion:2.1.6"
     compile "org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.0.2"
 }
