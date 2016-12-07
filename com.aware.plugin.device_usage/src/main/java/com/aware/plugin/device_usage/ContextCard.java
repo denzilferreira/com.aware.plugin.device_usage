@@ -28,7 +28,7 @@ public class ContextCard implements IContextCard {
 		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		View card = inflater.inflate(R.layout.layout, null);
 
-        BarChart chart = (BarChart) card.findViewById(R.id.barPlot);
+        BarChart chart = (BarChart) card.findViewById(R.id.device_usage_plot);
 
         //Get today's time from the beginning in milliseconds
         Calendar c = Calendar.getInstance();
@@ -38,8 +38,8 @@ public class ContextCard implements IContextCard {
         c.set(Calendar.SECOND, 0);
         c.set(Calendar.MILLISECOND, 0);
 
-		TextView just_off = (TextView) card.findViewById(R.id.device_off);
-        TextView average_off = (TextView) card.findViewById(R.id.average_unused);
+		TextView just_off = (TextView) card.findViewById(R.id.device_usage_off);
+        TextView average_off = (TextView) card.findViewById(R.id.device_usage_avg_unused);
 
         String[] columns = new String[]{"AVG(" + Provider.DeviceUsage_Data.ELAPSED_DEVICE_OFF + ") as average"};
         Cursor avg_off = context.getContentResolver().query(Provider.DeviceUsage_Data.CONTENT_URI, columns, Provider.DeviceUsage_Data.ELAPSED_DEVICE_OFF + " > 0", null, null);
