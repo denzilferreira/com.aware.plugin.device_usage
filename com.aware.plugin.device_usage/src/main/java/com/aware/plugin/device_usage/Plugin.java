@@ -161,6 +161,6 @@ public class Plugin extends Aware_Plugin {
 
         Aware.setSetting(this, Aware_Preferences.STATUS_SCREEN, false);
         Aware.setSetting(this, Settings.STATUS_PLUGIN_DEVICE_USAGE, false);
-        Aware.stopAWARE();
+        Aware.stopAWARE(this);
     }
 }
