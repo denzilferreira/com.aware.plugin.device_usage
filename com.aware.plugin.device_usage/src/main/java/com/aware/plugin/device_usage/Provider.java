@@ -89,8 +89,9 @@ public class Provider extends ContentProvider {
 
     private static UriMatcher sUriMatcher = null;
     private static HashMap<String, String> tableMap = null;
-    private static DatabaseHelper dbHelper;
+    private DatabaseHelper dbHelper;
     private static SQLiteDatabase database;
+
     private void initialiseDatabase() {
         if (dbHelper == null)
             dbHelper = new DatabaseHelper(getContext(), DATABASE_NAME, null, DATABASE_VERSION, DATABASE_TABLES, TABLES_FIELDS);
@@ -174,8 +175,6 @@ public class Provider extends ContentProvider {
         tableMap.put(DeviceUsage_Data.DEVICE_ID, DeviceUsage_Data.DEVICE_ID);
         tableMap.put(DeviceUsage_Data.ELAPSED_DEVICE_ON, DeviceUsage_Data.ELAPSED_DEVICE_ON);
         tableMap.put(DeviceUsage_Data.ELAPSED_DEVICE_OFF, DeviceUsage_Data.ELAPSED_DEVICE_OFF);
-
-        initialiseDatabase();
 
         return true;
     }
