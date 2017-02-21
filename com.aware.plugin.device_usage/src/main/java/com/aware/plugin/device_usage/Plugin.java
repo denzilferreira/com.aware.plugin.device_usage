@@ -137,9 +137,13 @@ public class Plugin extends Aware_Plugin {
         }
 
         if (permissions_ok) {
+
             DEBUG = Aware.getSetting(this, Aware_Preferences.DEBUG_FLAG).equals("true");
+
             Aware.setSetting(this, Settings.STATUS_PLUGIN_DEVICE_USAGE, true);
             Aware.setSetting(this, Aware_Preferences.STATUS_SCREEN, true);
+            Aware.startAWARE(this);
+
         } else {
             Intent requestPermissions = new Intent(this, PermissionsHandler.class);
             requestPermissions.putExtra(PermissionsHandler.EXTRA_REQUIRED_PERMISSIONS, REQUIRED_PERMISSIONS);
@@ -158,7 +162,10 @@ public class Plugin extends Aware_Plugin {
             unregisterReceiver(screenListener);
 
         Aware.setSetting(this, Aware_Preferences.STATUS_SCREEN, false);
+        Aware.stopScreen(this);
+
         Aware.setSetting(this, Settings.STATUS_PLUGIN_DEVICE_USAGE, false);
+
         Aware.stopAWARE(this);
     }
 }
