@@ -8,17 +8,14 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
-import android.support.v4.content.ContextCompat;
 import android.util.Log;
 
 import com.aware.Aware;
 import com.aware.Aware_Preferences;
 import com.aware.Screen;
 import com.aware.providers.Screen_Provider.Screen_Data;
-import com.aware.ui.PermissionsHandler;
 import com.aware.utils.Aware_Plugin;
 
 public class Plugin extends Aware_Plugin {
@@ -43,6 +40,8 @@ public class Plugin extends Aware_Plugin {
     private static double elapsed_device_on;
 
     private static ContextProducer sContext;
+
+    private Intent aware;
 
     /**
      * BroadcastReceiver that will receiver screen ON events from AWARE
@@ -125,7 +124,8 @@ public class Plugin extends Aware_Plugin {
         TABLES_FIELDS = Provider.TABLES_FIELDS;
         CONTEXT_URIS = new Uri[]{Provider.DeviceUsage_Data.CONTENT_URI};
 
-        Aware.startAWARE(this);
+        aware = new Intent(this, Aware.class);
+        startService(aware);
     }
 
     @Override
@@ -156,6 +156,6 @@ public class Plugin extends Aware_Plugin {
 
         Aware.setSetting(this, Settings.STATUS_PLUGIN_DEVICE_USAGE, false);
 
-        Aware.stopAWARE(this);
+        stopService(aware);
     }
 }
