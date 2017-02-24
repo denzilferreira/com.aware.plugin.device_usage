@@ -124,34 +124,24 @@ public class Plugin extends Aware_Plugin {
         DATABASE_TABLES = Provider.DATABASE_TABLES;
         TABLES_FIELDS = Provider.TABLES_FIELDS;
         CONTEXT_URIS = new Uri[]{Provider.DeviceUsage_Data.CONTENT_URI};
+
+        Aware.startAWARE(this);
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        boolean permissions_ok = true;
-        for(String p : REQUIRED_PERMISSIONS) {
-            if (ContextCompat.checkSelfPermission(this, p) != PackageManager.PERMISSION_GRANTED) {
-                permissions_ok = false;
-                break;
-            }
-        }
+        super.onStartCommand(intent,flags, startId);
 
-        if (permissions_ok) {
+        if (PERMISSIONS_OK) {
 
             DEBUG = Aware.getSetting(this, Aware_Preferences.DEBUG_FLAG).equals("true");
 
             Aware.setSetting(this, Settings.STATUS_PLUGIN_DEVICE_USAGE, true);
             Aware.setSetting(this, Aware_Preferences.STATUS_SCREEN, true);
-            Aware.startAWARE(this);
-
-        } else {
-            Intent requestPermissions = new Intent(this, PermissionsHandler.class);
-            requestPermissions.putExtra(PermissionsHandler.EXTRA_REQUIRED_PERMISSIONS, REQUIRED_PERMISSIONS);
-            requestPermissions.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(requestPermissions);
+            Aware.startScreen(this);
         }
 
-        return super.onStartCommand(intent, flags, startId);
+        return START_STICKY;
     }
 
     @Override
