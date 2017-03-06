@@ -17,6 +17,7 @@ import com.aware.Aware_Preferences;
 import com.aware.Screen;
 import com.aware.providers.Screen_Provider.Screen_Data;
 import com.aware.utils.Aware_Plugin;
+import com.aware.utils.PluginsManager;
 
 public class Plugin extends Aware_Plugin {
 
@@ -41,12 +42,11 @@ public class Plugin extends Aware_Plugin {
 
     private static ContextProducer sContext;
 
-    private Intent aware;
-
     /**
      * BroadcastReceiver that will receiver screen ON events from AWARE
      */
     private static ScreenListener screenListener = new ScreenListener();
+
     public static class ScreenListener extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -123,22 +123,22 @@ public class Plugin extends Aware_Plugin {
         DATABASE_TABLES = Provider.DATABASE_TABLES;
         TABLES_FIELDS = Provider.TABLES_FIELDS;
         CONTEXT_URIS = new Uri[]{Provider.DeviceUsage_Data.CONTENT_URI};
-
-        aware = new Intent(this, Aware.class);
-        startService(aware);
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        super.onStartCommand(intent,flags, startId);
+        super.onStartCommand(intent, flags, startId);
 
         if (PERMISSIONS_OK) {
+
+            PluginsManager.enablePlugin(this, "com.aware.plugin.device_usage");
 
             DEBUG = Aware.getSetting(this, Aware_Preferences.DEBUG_FLAG).equals("true");
 
             Aware.setSetting(this, Settings.STATUS_PLUGIN_DEVICE_USAGE, true);
             Aware.setSetting(this, Aware_Preferences.STATUS_SCREEN, true);
-            Aware.startScreen(this);
+
+            Aware.startAWARE(this);
         }
 
         return START_STICKY;
@@ -156,6 +156,6 @@ public class Plugin extends Aware_Plugin {
 
         Aware.setSetting(this, Settings.STATUS_PLUGIN_DEVICE_USAGE, false);
 
-        stopService(aware);
+        Aware.stopAWARE(this);
     }
 }
