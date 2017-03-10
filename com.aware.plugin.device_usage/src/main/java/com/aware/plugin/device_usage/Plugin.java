@@ -16,6 +16,7 @@ import com.aware.Aware;
 import com.aware.Aware_Preferences;
 import com.aware.Screen;
 import com.aware.providers.Screen_Provider.Screen_Data;
+import com.aware.ui.PermissionsHandler;
 import com.aware.utils.Aware_Plugin;
 import com.aware.utils.PluginsManager;
 
@@ -120,19 +121,16 @@ public class Plugin extends Aware_Plugin {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        super.onStartCommand(intent, flags, startId);
 
         if (PERMISSIONS_OK) {
-
             DEBUG = Aware.getSetting(this, Aware_Preferences.DEBUG_FLAG).equals("true");
-
             Aware.setSetting(this, Settings.STATUS_PLUGIN_DEVICE_USAGE, true);
             Aware.setSetting(this, Aware_Preferences.STATUS_SCREEN, true);
-
             Aware.startPlugin(this, "com.aware.plugin.device_usage");
             Aware.startAWARE(this);
         }
-
-        return super.onStartCommand(intent, flags, startId);
+        return START_STICKY;
     }
 
     @Override
