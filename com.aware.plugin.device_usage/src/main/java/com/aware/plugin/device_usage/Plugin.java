@@ -36,11 +36,8 @@ public class Plugin extends Aware_Plugin {
      */
     public static final String EXTRA_ELAPSED_DEVICE_ON = "elapsed_device_on";
 
-    //private variables that hold the latest values to be shared whenever ACTION_AWARE_CURRENT_CONTEXT is broadcasted
     private static double elapsed_device_off;
     private static double elapsed_device_on;
-
-    private static ContextProducer sContext;
 
     /**
      * BroadcastReceiver that will receiver screen ON events from AWARE
@@ -76,9 +73,7 @@ public class Plugin extends Aware_Plugin {
                 if (last_time_on != null && !last_time_on.isClosed()) last_time_on.close();
             }
 
-            //Share context
-            if (Plugin.sContext != null)
-                Plugin.sContext.onContext();
+            CONTEXT_PRODUCER.onContext();
         }
     }
 
@@ -97,7 +92,7 @@ public class Plugin extends Aware_Plugin {
         registerReceiver(screenListener, filter);
 
         //Shares this plugin's context to AWARE and applications
-        sContext = new ContextProducer() {
+        CONTEXT_PRODUCER = new ContextProducer() {
             @Override
             public void onContext() {
                 ContentValues context_data = new ContentValues();
@@ -118,8 +113,6 @@ public class Plugin extends Aware_Plugin {
             }
         };
 
-        CONTEXT_PRODUCER = sContext;
-
         DATABASE_TABLES = Provider.DATABASE_TABLES;
         TABLES_FIELDS = Provider.TABLES_FIELDS;
         CONTEXT_URIS = new Uri[]{Provider.DeviceUsage_Data.CONTENT_URI};
@@ -127,29 +120,26 @@ public class Plugin extends Aware_Plugin {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        super.onStartCommand(intent, flags, startId);
 
         if (PERMISSIONS_OK) {
-
-            PluginsManager.enablePlugin(this, "com.aware.plugin.device_usage");
 
             DEBUG = Aware.getSetting(this, Aware_Preferences.DEBUG_FLAG).equals("true");
 
             Aware.setSetting(this, Settings.STATUS_PLUGIN_DEVICE_USAGE, true);
             Aware.setSetting(this, Aware_Preferences.STATUS_SCREEN, true);
 
+            Aware.startPlugin(this, "com.aware.plugin.device_usage");
             Aware.startAWARE(this);
         }
 
-        return START_STICKY;
+        return super.onStartCommand(intent, flags, startId);
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
 
-        if (screenListener != null)
-            unregisterReceiver(screenListener);
+        if (screenListener != null) unregisterReceiver(screenListener);
 
         Aware.setSetting(this, Aware_Preferences.STATUS_SCREEN, false);
         Aware.stopScreen(this);
