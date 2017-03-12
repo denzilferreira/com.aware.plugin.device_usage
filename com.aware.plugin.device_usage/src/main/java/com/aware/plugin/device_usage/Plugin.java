@@ -16,9 +16,7 @@ import com.aware.Aware;
 import com.aware.Aware_Preferences;
 import com.aware.Screen;
 import com.aware.providers.Screen_Provider.Screen_Data;
-import com.aware.ui.PermissionsHandler;
 import com.aware.utils.Aware_Plugin;
-import com.aware.utils.PluginsManager;
 
 public class Plugin extends Aware_Plugin {
 
@@ -39,6 +37,8 @@ public class Plugin extends Aware_Plugin {
 
     private static double elapsed_device_off;
     private static double elapsed_device_on;
+
+    private static ContextProducer sProducer;
 
     /**
      * BroadcastReceiver that will receiver screen ON events from AWARE
@@ -74,7 +74,7 @@ public class Plugin extends Aware_Plugin {
                 if (last_time_on != null && !last_time_on.isClosed()) last_time_on.close();
             }
 
-            CONTEXT_PRODUCER.onContext();
+            if (sProducer != null) sProducer.onContext();
         }
     }
 
@@ -113,6 +113,7 @@ public class Plugin extends Aware_Plugin {
                 sendBroadcast(sharedContext);
             }
         };
+        sProducer = CONTEXT_PRODUCER;
 
         DATABASE_TABLES = Provider.DATABASE_TABLES;
         TABLES_FIELDS = Provider.TABLES_FIELDS;
@@ -127,6 +128,7 @@ public class Plugin extends Aware_Plugin {
             DEBUG = Aware.getSetting(this, Aware_Preferences.DEBUG_FLAG).equals("true");
             Aware.setSetting(this, Settings.STATUS_PLUGIN_DEVICE_USAGE, true);
             Aware.setSetting(this, Aware_Preferences.STATUS_SCREEN, true);
+
             Aware.startPlugin(this, "com.aware.plugin.device_usage");
             Aware.startAWARE(this);
         }
