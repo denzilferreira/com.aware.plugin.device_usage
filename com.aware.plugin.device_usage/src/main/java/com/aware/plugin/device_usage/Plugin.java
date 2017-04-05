@@ -129,7 +129,6 @@ public class Plugin extends Aware_Plugin {
             Aware.setSetting(this, Settings.STATUS_PLUGIN_DEVICE_USAGE, true);
             Aware.setSetting(this, Aware_Preferences.STATUS_SCREEN, true);
 
-            Aware.startPlugin(this, "com.aware.plugin.device_usage");
             Aware.startAWARE(this);
         }
         return START_STICKY;
