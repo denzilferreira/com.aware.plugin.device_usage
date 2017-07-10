@@ -46,6 +46,7 @@ configurations.all {
 
 dependencies {
     compile 'com.github.PhilJay:MPAndroidChart:v2.1.3'
-    compile "com.android.support:appcompat-v7:$support_libs"
     compile "com.github.denzilferreira:aware-client:$aware_libs"
+    compile "com.android.support:appcompat-v7:$support_libs"
+    compile "com.android.support:gridlayout-v7:$support_libs"
 }
