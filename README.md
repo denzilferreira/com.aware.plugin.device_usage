@@ -3,8 +3,6 @@ AWARE Plugin: Device Usage
 
 This plugin measures the device usage and non-usage sessions.
 
-[ ![Download](https://api.bintray.com/packages/denzilferreira/com.awareframework/com.aware.plugin.device_usage/images/download.svg) ](https://bintray.com/denzilferreira/com.awareframework/com.aware.plugin.device_usage/_latestVersion)
-
 # Settings
 Parameters adjustable on the dashboard and client:
 - **status_plugin_device_usage**: (boolean) activate/deactivate plugin

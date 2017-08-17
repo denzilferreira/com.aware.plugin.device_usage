@@ -6,6 +6,7 @@ package com.aware.plugin.device_usage;
 import android.content.ContentProvider;
 import android.content.ContentUris;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -91,6 +92,15 @@ public class Provider extends ContentProvider {
     private static HashMap<String, String> tableMap = null;
     private DatabaseHelper dbHelper;
     private static SQLiteDatabase database;
+
+    /**
+     * Returns the provider authority that is dynamic
+     * @return
+     */
+    public static String getAuthority(Context context) {
+        AUTHORITY = context.getPackageName() + ".provider.ambient_noise";
+        return AUTHORITY;
+    }
 
     private void initialiseDatabase() {
         if (dbHelper == null)

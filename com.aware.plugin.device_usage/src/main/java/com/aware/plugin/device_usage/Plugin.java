@@ -4,12 +4,14 @@
 package com.aware.plugin.device_usage;
 
 import android.content.BroadcastReceiver;
+import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Bundle;
 import android.util.Log;
 
 import com.aware.Aware;
@@ -129,6 +131,17 @@ public class Plugin extends Aware_Plugin {
             Aware.setSetting(this, Settings.STATUS_PLUGIN_DEVICE_USAGE, true);
             Aware.setSetting(this, Aware_Preferences.STATUS_SCREEN, true);
 
+            if (!Aware.isSyncEnabled(this, Provider.getAuthority(this)) && Aware.isStudy(this) && getApplicationContext().getPackageName().equalsIgnoreCase("com.aware.phone") || getApplicationContext().getResources().getBoolean(R.bool.standalone)) {
+                ContentResolver.setIsSyncable(Aware.getAWAREAccount(this), Provider.getAuthority(this), 1);
+                ContentResolver.setSyncAutomatically(Aware.getAWAREAccount(this), Provider.getAuthority(this), true);
+                ContentResolver.addPeriodicSync(
+                        Aware.getAWAREAccount(this),
+                        Provider.getAuthority(this),
+                        Bundle.EMPTY,
+                        Long.parseLong(Aware.getSetting(this, Aware_Preferences.FREQUENCY_WEBSERVICE)) * 60
+                );
+            }
+
             Aware.startAWARE(this);
         }
         return START_STICKY;
@@ -144,6 +157,15 @@ public class Plugin extends Aware_Plugin {
         Aware.stopScreen(this);
 
         Aware.setSetting(this, Settings.STATUS_PLUGIN_DEVICE_USAGE, false);
+
+        if (Aware.isStudy(this) && (getApplicationContext().getPackageName().equalsIgnoreCase("com.aware.phone") || getApplicationContext().getResources().getBoolean(R.bool.standalone))) {
+            ContentResolver.setSyncAutomatically(Aware.getAWAREAccount(this), Provider.getAuthority(this), false);
+            ContentResolver.removePeriodicSync(
+                    Aware.getAWAREAccount(this),
+                    Provider.getAuthority(this),
+                    Bundle.EMPTY
+            );
+        }
 
         Aware.stopAWARE(this);
     }
