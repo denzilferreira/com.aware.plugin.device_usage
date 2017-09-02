@@ -10,7 +10,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.database.Cursor;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -116,10 +115,6 @@ public class Plugin extends Aware_Plugin {
             }
         };
         sProducer = CONTEXT_PRODUCER;
-
-        DATABASE_TABLES = Provider.DATABASE_TABLES;
-        TABLES_FIELDS = Provider.TABLES_FIELDS;
-        CONTEXT_URIS = new Uri[]{Provider.DeviceUsage_Data.CONTENT_URI};
     }
 
     @Override
