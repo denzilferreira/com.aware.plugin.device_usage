@@ -98,7 +98,7 @@ public class Provider extends ContentProvider {
      * @return
      */
     public static String getAuthority(Context context) {
-        AUTHORITY = context.getPackageName() + ".provider.ambient_noise";
+        AUTHORITY = context.getPackageName() + ".provider.device_usage";
         return AUTHORITY;
     }
 
