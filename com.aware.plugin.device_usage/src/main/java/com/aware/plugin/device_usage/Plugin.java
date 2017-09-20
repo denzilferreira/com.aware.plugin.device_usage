@@ -40,6 +40,8 @@ public class Plugin extends Aware_Plugin {
     public void onCreate() {
         super.onCreate();
 
+        AUTHORITY = Provider.getAuthority(this);
+
         TAG = "AWARE::Device Usage";
 
         //Shares this plugin's context to AWARE and applications
