@@ -2,7 +2,7 @@
 <sync-adapter xmlns:android="http://schemas.android.com/apk/res/android"
     android:accountType="com.awareframework"
     android:allowParallelSyncs="true"
-    android:contentAuthority="com.aware.plugin.device_usage.provider.device_usage"
+    android:contentAuthority="@string/provider_device_usage"
     android:isAlwaysSyncable="true"
     android:supportsUploading="true"
-    android:userVisible="false" />
+    android:userVisible="true" />
