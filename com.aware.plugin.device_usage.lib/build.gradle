@@ -5,14 +5,12 @@ android {
     buildToolsVersion build_tools
 
     defaultConfig {
-//        applicationId 'com.aware.plugin.device_usage'
-
         minSdkVersion minimum_sdk
         targetSdkVersion target_sdk
         versionCode version_code
         versionName version_readable
 
-        resValue "string", "provider_device_usage", applicationId + ".provider.device_usage"
+        resValue "string", "provider_device_usage", "com.aware.plugin.device_usage.provider.device_usage"
     }
     signingConfigs {
         release

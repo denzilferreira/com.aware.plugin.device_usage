@@ -10,16 +10,17 @@
         tools:replace="android:icon, android:label">
 
         <service
-            android:label="AWARE: Device Usage"
             android:name="com.aware.plugin.device_usage.Plugin"
-            android:exported="true" />
+            android:exported="true"
+            android:label="AWARE: Device Usage" />
 
         <provider
             android:name="com.aware.plugin.device_usage.Provider"
             android:authorities="${applicationId}.provider.device_usage"
-            android:label="@string/plugin_device_usage"
             android:exported="true"
+            android:label="@string/plugin_device_usage"
             android:readPermission="com.aware.READ_CONTEXT_DATA"
+            android:syncable="true"
             android:writePermission="com.aware.WRITE_CONTEXT_DATA" />
 
         <activity
@@ -32,7 +33,9 @@
             <intent-filter>
                 <action android:name="android.content.SyncAdapter" />
             </intent-filter>
-            <meta-data android:name="android.content.SyncAdapter" android:resource="@xml/sync_device_usage" />
+            <meta-data
+                android:name="android.content.SyncAdapter"
+                android:resource="@xml/sync_device_usage" />
         </service>
 
     </application>
