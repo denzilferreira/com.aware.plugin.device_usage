@@ -3,19 +3,17 @@
  */
 package com.aware.plugin.device_usage;
 
-import android.content.BroadcastReceiver;
+import android.accounts.Account;
+import android.content.ContentResolver;
 import android.content.ContentValues;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.database.Cursor;
-import android.net.Uri;
+import android.content.SyncRequest;
+import android.os.Bundle;
 import android.util.Log;
 
 import com.aware.Aware;
 import com.aware.Aware_Preferences;
 import com.aware.Screen;
-import com.aware.providers.Screen_Provider.Screen_Data;
 import com.aware.utils.Aware_Plugin;
 
 public class Plugin extends Aware_Plugin {
@@ -35,62 +33,18 @@ public class Plugin extends Aware_Plugin {
      */
     public static final String EXTRA_ELAPSED_DEVICE_ON = "elapsed_device_on";
 
-    private static double elapsed_device_off;
-    private static double elapsed_device_on;
-
-    private static ContextProducer sProducer;
-
-    /**
-     * BroadcastReceiver that will receiver screen ON events from AWARE
-     */
-    private static ScreenListener screenListener = new ScreenListener();
-
-    public static class ScreenListener extends BroadcastReceiver {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            if (intent.getAction().equals(Screen.ACTION_AWARE_SCREEN_ON)) {
-                //start timer on
-                elapsed_device_on = 0;
-
-                //Query screen data for when was the last time the screen was off
-                Cursor last_time_off = context.getContentResolver().query(Screen_Data.CONTENT_URI, null, Screen_Data.SCREEN_STATUS + " = " + Screen.STATUS_SCREEN_OFF, null, Screen_Data.TIMESTAMP + " DESC LIMIT 1");
-                if (last_time_off != null && last_time_off.moveToFirst()) {
-                    //Calculate how long has it been until now that the screen was off
-                    elapsed_device_off = System.currentTimeMillis() - last_time_off.getDouble(last_time_off.getColumnIndex(Screen_Data.TIMESTAMP));
-                }
-                if (last_time_off != null && !last_time_off.isClosed()) last_time_off.close();
-            }
-
-            if (intent.getAction().equals(Screen.ACTION_AWARE_SCREEN_OFF)) {
-                //start timer off
-                elapsed_device_off = 0;
-
-                //Query screen data for when was the last time the screen was on
-                Cursor last_time_on = context.getContentResolver().query(Screen_Data.CONTENT_URI, null, Screen_Data.SCREEN_STATUS + " = " + Screen.STATUS_SCREEN_ON, null, Screen_Data.TIMESTAMP + " DESC LIMIT 1");
-                if (last_time_on != null && last_time_on.moveToFirst()) {
-                    //Calculate how long has it been until now that the screen was on
-                    elapsed_device_on = System.currentTimeMillis() - last_time_on.getDouble(last_time_on.getColumnIndex(Screen_Data.TIMESTAMP));
-                }
-                if (last_time_on != null && !last_time_on.isClosed()) last_time_on.close();
-            }
-
-            if (sProducer != null) sProducer.onContext();
-        }
-    }
+    private static long elapsed_device_off = 0;
+    private static long elapsed_device_on = 0;
+    private static long last_off = 0;
+    private static long last_on = 0;
 
     @Override
     public void onCreate() {
         super.onCreate();
 
+        AUTHORITY = Provider.getAuthority(this);
+
         TAG = "AWARE::Device Usage";
-
-        //create a context filter
-        IntentFilter filter = new IntentFilter();
-        filter.addAction(Screen.ACTION_AWARE_SCREEN_ON);
-        filter.addAction(Screen.ACTION_AWARE_SCREEN_OFF);
-
-        //Ask Android to register our context receiver
-        registerReceiver(screenListener, filter);
 
         //Shares this plugin's context to AWARE and applications
         CONTEXT_PRODUCER = new ContextProducer() {
@@ -104,7 +58,7 @@ public class Plugin extends Aware_Plugin {
 
                 if (DEBUG) Log.d(TAG, context_data.toString());
 
-                //insert data to table
+                //insert data to device usage table
                 getContentResolver().insert(Provider.DeviceUsage_Data.CONTENT_URI, context_data);
 
                 Intent sharedContext = new Intent(ACTION_AWARE_PLUGIN_DEVICE_USAGE);
@@ -113,11 +67,6 @@ public class Plugin extends Aware_Plugin {
                 sendBroadcast(sharedContext);
             }
         };
-        sProducer = CONTEXT_PRODUCER;
-
-        DATABASE_TABLES = Provider.DATABASE_TABLES;
-        TABLES_FIELDS = Provider.TABLES_FIELDS;
-        CONTEXT_URIS = new Uri[]{Provider.DeviceUsage_Data.CONTENT_URI};
     }
 
     @Override
@@ -129,6 +78,57 @@ public class Plugin extends Aware_Plugin {
             Aware.setSetting(this, Settings.STATUS_PLUGIN_DEVICE_USAGE, true);
             Aware.setSetting(this, Aware_Preferences.STATUS_SCREEN, true);
 
+            Aware.startScreen(this);
+            Screen.setSensorObserver(new Screen.AWARESensorObserver() {
+                @Override
+                public void onScreenOn() {
+                    //start timer on
+                    elapsed_device_on = 0;
+                }
+
+                @Override
+                public void onScreenOff() {
+                    //start timer off
+                    elapsed_device_off = 0;
+                }
+
+                @Override
+                public void onScreenLocked() {
+                    //locked, phone no longer allowed to use
+                    if (last_on > 0) {
+                        elapsed_device_off = 0;
+                        elapsed_device_on = System.currentTimeMillis() - last_on;
+                        CONTEXT_PRODUCER.onContext();
+                    }
+                    last_on = System.currentTimeMillis();
+                }
+
+                @Override
+                public void onScreenUnlocked() {
+                    //unlocked, phone ready to use
+                    if (last_off > 0) {
+                        elapsed_device_on = 0;
+                        elapsed_device_off = System.currentTimeMillis() - last_off;
+                        CONTEXT_PRODUCER.onContext();
+                    }
+                    last_off = System.currentTimeMillis();
+                }
+            });
+
+            if (Aware.isStudy(this)) {
+                Account aware_account = Aware.getAWAREAccount(getApplicationContext());
+                String authority = Provider.getAuthority(getApplicationContext());
+                long frequency = Long.parseLong(Aware.getSetting(this, Aware_Preferences.FREQUENCY_WEBSERVICE)) * 60;
+
+                ContentResolver.setIsSyncable(aware_account, authority, 1);
+                ContentResolver.setSyncAutomatically(aware_account, authority, true);
+                SyncRequest request = new SyncRequest.Builder()
+                        .syncPeriodic(frequency, frequency / 3)
+                        .setSyncAdapter(aware_account, authority)
+                        .setExtras(new Bundle()).build();
+                ContentResolver.requestSync(request);
+            }
+
             Aware.startAWARE(this);
         }
         return START_STICKY;
@@ -138,12 +138,15 @@ public class Plugin extends Aware_Plugin {
     public void onDestroy() {
         super.onDestroy();
 
-        if (screenListener != null) unregisterReceiver(screenListener);
-
-        Aware.setSetting(this, Aware_Preferences.STATUS_SCREEN, false);
+        Aware.setSetting(this, Settings.STATUS_PLUGIN_DEVICE_USAGE, false);
         Aware.stopScreen(this);
 
-        Aware.setSetting(this, Settings.STATUS_PLUGIN_DEVICE_USAGE, false);
+        ContentResolver.setSyncAutomatically(Aware.getAWAREAccount(this), Provider.getAuthority(this), false);
+        ContentResolver.removePeriodicSync(
+                Aware.getAWAREAccount(this),
+                Provider.getAuthority(this),
+                Bundle.EMPTY
+        );
 
         Aware.stopAWARE(this);
     }

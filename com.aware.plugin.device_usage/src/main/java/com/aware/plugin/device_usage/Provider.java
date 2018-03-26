@@ -6,6 +6,7 @@ package com.aware.plugin.device_usage;
 import android.content.ContentProvider;
 import android.content.ContentUris;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.UriMatcher;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -92,6 +93,15 @@ public class Provider extends ContentProvider {
     private DatabaseHelper dbHelper;
     private static SQLiteDatabase database;
 
+    /**
+     * Returns the provider authority that is dynamic
+     * @return
+     */
+    public static String getAuthority(Context context) {
+        AUTHORITY = context.getPackageName() + ".provider.device_usage";
+        return AUTHORITY;
+    }
+
     private void initialiseDatabase() {
         if (dbHelper == null)
             dbHelper = new DatabaseHelper(getContext(), DATABASE_NAME, null, DATABASE_VERSION, DATABASE_TABLES, TABLES_FIELDS);
@@ -116,7 +126,7 @@ public class Provider extends ContentProvider {
         }
         database.setTransactionSuccessful();
         database.endTransaction();
-        getContext().getContentResolver().notifyChange(uri, null);
+        getContext().getContentResolver().notifyChange(uri, null, false);
         return count;
     }
 
@@ -149,7 +159,7 @@ public class Provider extends ContentProvider {
                 if (_id > 0) {
                     Uri dataUri = ContentUris.withAppendedId(
                             DeviceUsage_Data.CONTENT_URI, _id);
-                    getContext().getContentResolver().notifyChange(dataUri, null);
+                    getContext().getContentResolver().notifyChange(dataUri, null, false);
                     return dataUri;
                 }
                 database.endTransaction();
@@ -223,7 +233,7 @@ public class Provider extends ContentProvider {
         }
         database.setTransactionSuccessful();
         database.endTransaction();
-        getContext().getContentResolver().notifyChange(uri, null);
+        getContext().getContentResolver().notifyChange(uri, null, false);
         return count;
     }
 }

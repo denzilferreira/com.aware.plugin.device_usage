@@ -16,9 +16,11 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.utils.ValueFormatter;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Locale;
 
 public class ContextCard implements IContextCard {
 
@@ -107,6 +109,13 @@ public class ContextCard implements IContextCard {
 		left.setDrawLabels(true);
 		left.setDrawGridLines(true);
 		left.setDrawAxisLine(true);
+		left.setLabelCount(4, true);
+		left.setValueFormatter(new ValueFormatter() {
+            @Override
+            public String getFormattedValue(float value) {
+                return String.format(Locale.getDefault(),"%s", (long) value);
+            }
+        });
 
         mChart.getAxisRight().setEnabled(false);
 
