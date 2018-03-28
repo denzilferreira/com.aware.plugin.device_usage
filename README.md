@@ -1,6 +1,8 @@
 AWARE Plugin: Device Usage
 ==========================
 
+[![Release](https://jitpack.io/v/denzilferreira/com.aware.plugin.device_usage.svg)](https://jitpack.io/#denzilferreira/com.aware.plugin.device_usage)
+
 This plugin measures the device usage and non-usage sessions.
 
 # Settings
