@@ -145,5 +145,6 @@ public class Plugin extends Aware_Plugin {
                 Provider.getAuthority(this),
                 Bundle.EMPTY
         );
+
     }
 }
