@@ -33,6 +33,18 @@ android {
             manifest.srcFile '../com.aware.plugin.device_usage/src/main/AndroidManifest.xml'
         }
     }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/ASL2.0'
+        exclude 'META-INF/proguard/androidx-annotations.pro'
+    }
 }
 
 if (System.getenv("storeFile") != null && System.getenv("storePassword") != null && System.getenv("keyAlias") != null && System.getenv("keyPassword") != null) {
@@ -43,29 +55,6 @@ if (System.getenv("storeFile") != null && System.getenv("storePassword") != null
 } else {
     println("No keystore defined. Unsigned!")
     android.buildTypes.release.signingConfig = null
-}
-
-task generateSourcesJar(type: Jar) {
-    from android.sourceSets.main.java.srcDirs
-    classifier 'sources'
-}
-
-task generateJavadocs(type: Javadoc) {
-    failOnError false
-    source = android.sourceSets.main.java.srcDirs
-    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
-}
-
-task generateJavadocsJar(type: Jar) {
-    from generateJavadocs.destinationDir
-    classifier 'javadoc'
-}
-
-generateJavadocsJar.dependsOn generateJavadocs
-
-artifacts {
-    archives generateJavadocsJar
-    archives generateSourcesJar
 }
 
 configurations.all {
