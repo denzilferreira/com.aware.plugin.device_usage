@@ -60,6 +60,6 @@ configurations.all {
 }
 
 dependencies {
-    api "com.github.denzilferreira:aware-client:$aware_libs"
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0-alpha'
+    api project(':aware-core')
 }

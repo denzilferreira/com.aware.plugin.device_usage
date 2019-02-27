@@ -22,7 +22,6 @@
         <activity
             android:name="com.aware.plugin.device_usage.Settings"
             android:label="AWARE: Device Usage"
-            android:theme="@style/Theme.Aware"
             android:exported="true" />
 
         <service

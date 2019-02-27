@@ -47,25 +47,7 @@ android {
     }
 }
 
-if (System.getenv("storeFile") != null && System.getenv("storePassword") != null && System.getenv("keyAlias") != null && System.getenv("keyPassword") != null) {
-    android.signingConfigs.release.storeFile = file(System.getenv("storeFile"))
-    android.signingConfigs.release.storePassword = System.getenv("storePassword")
-    android.signingConfigs.release.keyAlias = System.getenv("keyAlias")
-    android.signingConfigs.release.keyPassword = System.getenv("keyPassword")
-} else {
-    println("No keystore defined. Unsigned!")
-    android.buildTypes.release.signingConfig = null
-}
-
-configurations.all {
-    resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
-}
-
-repositories {
-    maven { url "https://jitpack.io" } //MPAndroidChart, AWARE
-}
-
 dependencies {
-    api "com.github.denzilferreira:aware-client:$aware_libs"
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0-alpha'
+    api project(":aware-core")
 }
