@@ -75,7 +75,15 @@ public class Plugin extends Aware_Plugin {
 
         if (PERMISSIONS_OK) {
             DEBUG = Aware.getSetting(this, Aware_Preferences.DEBUG_FLAG).equals("true");
-            Aware.setSetting(this, Settings.STATUS_PLUGIN_DEVICE_USAGE, true);
+
+            if (Aware.getSetting(getApplicationContext(), Settings.STATUS_PLUGIN_DEVICE_USAGE).length() == 0) {
+                Aware.setSetting(getApplicationContext(), Settings.STATUS_PLUGIN_DEVICE_USAGE, true);
+            } else {
+                if (Aware.getSetting(getApplicationContext(), Settings.STATUS_PLUGIN_DEVICE_USAGE).equalsIgnoreCase("false")) {
+                    Aware.stopPlugin(getApplicationContext(), getPackageName());
+                    return START_STICKY;
+                }
+            }
 
             Aware.startScreen(this);
             Screen.setSensorObserver(new Screen.AWARESensorObserver() {
