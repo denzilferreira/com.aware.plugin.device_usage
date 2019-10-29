@@ -59,7 +59,4 @@ configurations.all {
     resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
 }
 
-dependencies {
-    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0-alpha'
-    api project(':aware-core')
-}
+apply from: '../dependencies.gradle'
